@@ -23,7 +23,7 @@ SkillMap="*res://source/script/skill_map.gd"
 [display]
 
 window/size/viewport_height=816
-window/stretch/mode="viewport"
+window/stretch/mode="canvas_items"
 
 [editor_plugins]
 

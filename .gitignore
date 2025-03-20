@@ -1,3 +1,6 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+export_presets.cfg
+Biuld/保护红魔馆.exe
+Biuld/libpixelpen.windows.release.x86_64.dll
