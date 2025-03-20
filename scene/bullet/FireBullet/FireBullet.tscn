@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://b5wt1swvxewrn"]
+
+[ext_resource type="Script" uid="uid://8tck4kt0wao3" path="res://scene/bullet/FireBullet/fire_bullet.gd" id="1_vblb8"]
+[ext_resource type="Texture2D" uid="uid://d0fgn6ii380gw" path="res://scene/bullet/FireBullet/火焰.png" id="2_vblb8"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_00xwy"]
+radius = 22.0
+height = 44.0
+
+[node name="FireBullet" type="Area2D" node_paths=PackedStringArray("hit_box")]
+script = ExtResource("1_vblb8")
+hit_box = NodePath("CollisionShape2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.21875, 0.21875)
+texture = ExtResource("2_vblb8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CapsuleShape2D_00xwy")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

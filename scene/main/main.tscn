@@ -1,0 +1,331 @@
+[gd_scene load_steps=26 format=3 uid="uid://b1c1sqoj8chgn"]
+
+[ext_resource type="Script" uid="uid://bnbjdmwlmm5xv" path="res://scene/main/main.gd" id="1_axug6"]
+[ext_resource type="Texture2D" uid="uid://bvh4adudqbb5n" path="res://source/sprite/主要场景.png" id="2_kuow0"]
+[ext_resource type="Texture2D" uid="uid://beaufcclocxw6" path="res://source/sprite/阿空1.png" id="3_htxke"]
+[ext_resource type="Texture2D" uid="uid://tjevihcl6vc4" path="res://source/sprite/阿空2.png" id="4_7ogvu"]
+[ext_resource type="PackedScene" uid="uid://wh3f2otaufxa" path="res://scene/enemy/yaojing maid/yaojing.tscn" id="5_kkefh"]
+[ext_resource type="PackedScene" uid="uid://bbyvxv60movpw" path="res://scene/enemy/maoyu/MaoYu.tscn" id="6_ry0x4"]
+[ext_resource type="PackedScene" uid="uid://csgc2a7n64dxd" path="res://scene/skill/silvery/silvery_1.tscn" id="7_avggv"]
+[ext_resource type="Script" uid="uid://cdevlvtr8xjp2" path="res://scene/skill/SkillStateMachine.gd" id="7_q2oic"]
+[ext_resource type="Texture2D" uid="uid://r3kb1npjyj72" path="res://source/sprite/帕秋莉.png" id="8_rhilv"]
+[ext_resource type="Script" uid="uid://cyf554y68i7mn" path="res://scene/main/spawn.gd" id="9_me5h2"]
+[ext_resource type="Script" uid="uid://djdhohjtmm20v" path="res://scene/skill/fire.gd" id="9_tyv27"]
+[ext_resource type="Texture2D" uid="uid://dphp8yqem7qe" path="res://source/sprite/边框.png" id="10_306eu"]
+[ext_resource type="PackedScene" uid="uid://b5wt1swvxewrn" path="res://scene/bullet/FireBullet/FireBullet.tscn" id="10_676lm"]
+[ext_resource type="Texture2D" uid="uid://15g6axtk7y7t" path="res://source/sprite/火.png" id="11_hupia"]
+[ext_resource type="Script" uid="uid://bc50d7r5s4bpp" path="res://scene/skill/noskill.gd" id="11_x8g4k"]
+[ext_resource type="Texture2D" uid="uid://b1jfyajctuh60" path="res://source/sprite/水.png" id="12_qymhq"]
+[ext_resource type="Texture2D" uid="uid://cv16b2a137tub" path="res://source/sprite/木.png" id="13_8hsjf"]
+[ext_resource type="Texture2D" uid="uid://cw56rfttoe7vl" path="res://source/sprite/金.png" id="14_th6um"]
+[ext_resource type="Texture2D" uid="uid://3ptnnn82qnhj" path="res://source/sprite/土.png" id="15_oaoya"]
+[ext_resource type="Texture2D" uid="uid://chbwjphvuhq4p" path="res://source/sprite/日.png" id="16_q10qn"]
+[ext_resource type="Texture2D" uid="uid://tarya5il4q7r" path="res://source/sprite/月.png" id="17_dpv2b"]
+[ext_resource type="Texture2D" uid="uid://3uahr6qyu0uf" path="res://source/sprite/布丁.png" id="22_52l20"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hxavl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_htxke")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_7ogvu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d28pq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_rhilv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Curve2D" id="Curve2D_pmowg"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1144, 352, 0, 0, 0, 0, 1144, 616)
+}
+point_count = 2
+
+[node name="main" type="Node2D" node_paths=PackedStringArray("chong_neng", "xuan_zhong", "skill_state_machine", "money_label")]
+y_sort_enabled = true
+script = ExtResource("1_axug6")
+chong_neng = [NodePath("UI/火/火充能"), NodePath("UI/水/水充能"), NodePath("UI/木/木充能"), NodePath("UI/金/金充能"), NodePath("UI/土/土充能"), NodePath("UI/日/日充能"), NodePath("UI/月/月充能")]
+xuan_zhong = [NodePath("UI/火/选中"), NodePath("UI/水/选中"), NodePath("UI/木/选中"), NodePath("UI/金/选中"), NodePath("UI/土/选中"), NodePath("UI/日/选中"), NodePath("UI/月/选中")]
+skill_state_machine = NodePath("SkillStateMachine")
+money_label = NodePath("UI/Money/MoneyLabel")
+
+[node name="场景" type="Sprite2D" parent="."]
+z_index = -100
+position = Vector2(576, 324)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("2_kuow0")
+
+[node name="the sun" type="AnimatedSprite2D" parent="."]
+position = Vector2(1046, 88)
+scale = Vector2(0.9, 0.9)
+sprite_frames = SubResource("SpriteFrames_hxavl")
+autoplay = "default"
+frame_progress = 0.930617
+
+[node name="MaoYu" parent="." instance=ExtResource("6_ry0x4")]
+position = Vector2(577, 422)
+
+[node name="yaojing" parent="." instance=ExtResource("5_kkefh")]
+position = Vector2(742, 422)
+
+[node name="SkillStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("7_q2oic")
+initial_state = NodePath("silvery")
+
+[node name="silvery" parent="SkillStateMachine" instance=ExtResource("7_avggv")]
+position = Vector2(190, 221)
+
+[node name="fire" type="Node2D" parent="SkillStateMachine"]
+position = Vector2(190, 206)
+script = ExtResource("9_tyv27")
+bullet_scene = ExtResource("10_676lm")
+
+[node name="noskill" type="Node2D" parent="SkillStateMachine" node_paths=PackedStringArray("xuan_zhong")]
+position = Vector2(190, 206)
+script = ExtResource("11_x8g4k")
+xuan_zhong = [NodePath("../../UI/火/选中"), NodePath("../../UI/水/选中"), NodePath("../../UI/木/选中"), NodePath("../../UI/金/选中"), NodePath("../../UI/土/选中"), NodePath("../../UI/日/选中"), NodePath("../../UI/月/选中")]
+
+[node name="Patchouli" type="AnimatedSprite2D" parent="."]
+position = Vector2(148, 220)
+sprite_frames = SubResource("SpriteFrames_d28pq")
+
+[node name="spawn" type="Node" parent="."]
+script = ExtResource("9_me5h2")
+raid_point = 100.0
+maoyu_scene = ExtResource("6_ry0x4")
+
+[node name="Path" type="Path2D" parent="spawn"]
+curve = SubResource("Curve2D_pmowg")
+
+[node name="SpawnLocation" type="PathFollow2D" parent="spawn/Path"]
+position = Vector2(1144, 352)
+rotation = 1.5708
+
+[node name="UI" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(576, 732)
+scale = Vector2(1, 1.16667)
+texture = ExtResource("10_306eu")
+
+[node name="火" type="Sprite2D" parent="UI"]
+z_index = 1
+position = Vector2(-524.526, 26.978)
+scale = Vector2(0.572031, 0.490313)
+texture = ExtResource("11_hupia")
+
+[node name="火充能" type="ColorRect" parent="UI/火"]
+offset_left = -76.0
+offset_top = -75.9998
+offset_right = 76.0
+offset_bottom = 76.0002
+color = Color(0, 0, 0, 0.756863)
+metadata/_edit_use_anchors_ = true
+
+[node name="选中" type="ReferenceRect" parent="UI/火"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -76.0
+offset_top = -76.0
+offset_right = -76.0
+offset_bottom = -76.0
+grow_horizontal = 2
+grow_vertical = 2
+border_color = Color(0.0588235, 0.827451, 0.27451, 1)
+border_width = 5.0
+editor_only = false
+
+[node name="水" type="Sprite2D" parent="UI"]
+position = Vector2(-428.526, 26.9781)
+scale = Vector2(0.572031, 0.490313)
+texture = ExtResource("12_qymhq")
+
+[node name="水充能" type="ColorRect" parent="UI/水"]
+offset_left = -76.0
+offset_top = -76.0
+offset_right = 76.0
+offset_bottom = 76.0
+color = Color(0, 0, 0, 0.756863)
+metadata/_edit_use_anchors_ = true
+
+[node name="选中" type="ReferenceRect" parent="UI/水"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -76.0
+offset_top = -76.0
+offset_right = -76.0
+offset_bottom = -76.0
+grow_horizontal = 2
+grow_vertical = 2
+border_color = Color(0.0588235, 0.827451, 0.27451, 1)
+border_width = 5.0
+editor_only = false
+
+[node name="木" type="Sprite2D" parent="UI"]
+position = Vector2(-332.526, 26.9781)
+scale = Vector2(0.572031, 0.490313)
+texture = ExtResource("13_8hsjf")
+
+[node name="木充能" type="ColorRect" parent="UI/木"]
+offset_left = -76.0
+offset_top = -76.0
+offset_right = 76.0
+offset_bottom = 76.0
+color = Color(0, 0, 0, 0.756863)
+metadata/_edit_use_anchors_ = true
+
+[node name="选中" type="ReferenceRect" parent="UI/木"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -76.0
+offset_top = -76.0
+offset_right = -76.0
+offset_bottom = -76.0
+grow_horizontal = 2
+grow_vertical = 2
+border_color = Color(0.0588235, 0.827451, 0.27451, 1)
+border_width = 5.0
+editor_only = false
+
+[node name="金" type="Sprite2D" parent="UI"]
+position = Vector2(-236.526, 26.9781)
+scale = Vector2(0.572031, 0.490313)
+texture = ExtResource("14_th6um")
+
+[node name="金充能" type="ColorRect" parent="UI/金"]
+offset_left = -76.0
+offset_top = -76.0
+offset_right = 76.0
+offset_bottom = 76.0
+color = Color(0, 0, 0, 0.756863)
+metadata/_edit_use_anchors_ = true
+
+[node name="选中" type="ReferenceRect" parent="UI/金"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -76.0
+offset_top = -76.0
+offset_right = -76.0
+offset_bottom = -76.0
+grow_horizontal = 2
+grow_vertical = 2
+border_color = Color(0.0588235, 0.827451, 0.27451, 1)
+border_width = 5.0
+editor_only = false
+
+[node name="土" type="Sprite2D" parent="UI"]
+position = Vector2(-140.526, 26.9781)
+scale = Vector2(0.572031, 0.490313)
+texture = ExtResource("15_oaoya")
+
+[node name="土充能" type="ColorRect" parent="UI/土"]
+offset_left = -76.0
+offset_top = -76.0
+offset_right = 76.0
+offset_bottom = 76.0
+color = Color(0, 0, 0, 0.756863)
+metadata/_edit_use_anchors_ = true
+
+[node name="选中" type="ReferenceRect" parent="UI/土"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -76.0
+offset_top = -76.0
+offset_right = -76.0
+offset_bottom = -76.0
+grow_horizontal = 2
+grow_vertical = 2
+border_color = Color(0.0588235, 0.827451, 0.27451, 1)
+border_width = 5.0
+editor_only = false
+
+[node name="日" type="Sprite2D" parent="UI"]
+position = Vector2(-44.5256, 26.9781)
+scale = Vector2(0.572031, 0.490313)
+texture = ExtResource("16_q10qn")
+
+[node name="日充能" type="ColorRect" parent="UI/日"]
+offset_left = -76.0
+offset_top = -76.0
+offset_right = 76.0
+offset_bottom = 76.0
+color = Color(0, 0, 0, 0.756863)
+metadata/_edit_use_anchors_ = true
+
+[node name="选中" type="ReferenceRect" parent="UI/日"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -76.0
+offset_top = -76.0
+offset_right = -76.0
+offset_bottom = -76.0
+grow_horizontal = 2
+grow_vertical = 2
+border_color = Color(0.0588235, 0.827451, 0.27451, 1)
+border_width = 5.0
+editor_only = false
+
+[node name="月" type="Sprite2D" parent="UI"]
+position = Vector2(51.4744, 26.9781)
+scale = Vector2(0.572031, 0.490313)
+texture = ExtResource("17_dpv2b")
+
+[node name="月充能" type="ColorRect" parent="UI/月"]
+offset_left = -76.0
+offset_top = -76.0
+offset_right = 76.0
+offset_bottom = 76.0
+color = Color(0, 0, 0, 0.756863)
+metadata/_edit_use_anchors_ = true
+
+[node name="选中" type="ReferenceRect" parent="UI/月"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -76.0
+offset_top = -76.0
+offset_right = -76.0
+offset_bottom = -76.0
+grow_horizontal = 2
+grow_vertical = 2
+border_color = Color(0.0588235, 0.827451, 0.27451, 1)
+border_width = 5.0
+editor_only = false
+
+[node name="Money" type="Sprite2D" parent="UI"]
+position = Vector2(136, 10.2857)
+scale = Vector2(0.294296, 0.294296)
+texture = ExtResource("22_52l20")
+
+[node name="MoneyLabel" type="Label" parent="UI/Money"]
+offset_left = 81.5505
+offset_top = -46.6001
+offset_right = 121.551
+offset_bottom = -23.6001
+scale = Vector2(4.9177, 3.74236)
+text = "0"

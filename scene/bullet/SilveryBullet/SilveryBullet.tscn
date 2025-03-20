@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bi68v2q73la8t"]
+
+[ext_resource type="Texture2D" uid="uid://b7lcenqdk8117" path="res://scene/bullet/SilveryBullet/银色子弹.png" id="1_6o6tn"]
+[ext_resource type="Script" uid="uid://bp0g18jlttih1" path="res://scene/bullet/SilveryBullet/silvery_bullet.gd" id="1_vkatv"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_00xwy"]
+radius = 12.0
+height = 28.0
+
+[node name="SilveryBullet" type="Area2D"]
+script = ExtResource("1_vkatv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_6o6tn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CapsuleShape2D_00xwy")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

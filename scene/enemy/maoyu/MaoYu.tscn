@@ -1,0 +1,106 @@
+[gd_scene load_steps=15 format=3 uid="uid://bbyvxv60movpw"]
+
+[ext_resource type="Material" uid="uid://cj6q6qia5ps5b" path="res://source/shader/FlashMaterial.tres" id="1_6puqn"]
+[ext_resource type="Texture2D" uid="uid://b0c043gfjkdi1" path="res://source/sprite/毛玉.png" id="1_d15yl"]
+[ext_resource type="Script" uid="uid://c415ds3v1pm51" path="res://scene/enemy/maoyu/mao_yu.gd" id="1_pm8aq"]
+[ext_resource type="Texture2D" uid="uid://cnw8beh11rf5a" path="res://source/sprite/毛玉2.png" id="2_01u15"]
+[ext_resource type="Script" uid="uid://gng0ndnn3iu0" path="res://scene/enemy/states/StateMachine.gd" id="2_qsvw5"]
+[ext_resource type="Script" uid="uid://bam1l1cq7jpan" path="res://scene/component/HealthComponent/Health_Component.gd" id="3_1dshp"]
+[ext_resource type="Script" uid="uid://cu1tc4hkxw35b" path="res://scene/enemy/states/SmoothMove.gd" id="3_dfrto"]
+[ext_resource type="Script" uid="uid://s1tdf8ql73be" path="res://scene/component/HitboxComponent/Hitbox_Component.gd" id="4_cjhyq"]
+[ext_resource type="Script" uid="uid://cov8duxesavds" path="res://scene/enemy/states/Dying.gd" id="8_e0ge1"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5xga1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_d15yl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_01u15")
+}],
+"loop": true,
+"name": &"IDLE",
+"speed": 1.0
+}]
+
+[sub_resource type="Animation" id="Animation_kgavt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/open")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_1ggjp"]
+resource_name = "maoyu_flash"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/open")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gqtrd"]
+_data = {
+&"RESET": SubResource("Animation_kgavt"),
+&"flash": SubResource("Animation_1ggjp")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vrmu1"]
+radius = 32.0
+height = 64.0
+
+[node name="MaoYu" type="Node2D"]
+script = ExtResource("1_pm8aq")
+drop_resource = Array[float]([100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0])
+drop_money = 100
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+material = ExtResource("1_6puqn")
+scale = Vector2(0.359375, 0.359375)
+sprite_frames = SubResource("SpriteFrames_5xga1")
+animation = &"IDLE"
+autoplay = "IDLE"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+&"": SubResource("AnimationLibrary_gqtrd")
+}
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("3_1dshp")
+max_health = 2.0
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+script = ExtResource("4_cjhyq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(-1, 0)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CapsuleShape2D_vrmu1")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_qsvw5")
+initial_state = NodePath("SmoothMove")
+
+[node name="SmoothMove" type="Node" parent="StateMachine"]
+script = ExtResource("3_dfrto")
+speed = 50.0
+
+[node name="Dying" type="Node" parent="StateMachine"]
+script = ExtResource("8_e0ge1")

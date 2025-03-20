@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cj6q6qia5ps5b"]
+
+[ext_resource type="Shader" uid="uid://cxv3sx2v584ij" path="res://source/shader/flash.gdshader" id="1_w2xlr"]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource("1_w2xlr")
+shader_parameter/open = false
+shader_parameter/color = Color(1, 0, 0, 1)

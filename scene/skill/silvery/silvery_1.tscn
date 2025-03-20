@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://csgc2a7n64dxd"]
+
+[ext_resource type="Script" uid="uid://c10nlf2vc026k" path="res://scene/skill/silvery/silvery_1.gd" id="1_u3a37"]
+[ext_resource type="PackedScene" uid="uid://bi68v2q73la8t" path="res://scene/bullet/SilveryBullet/SilveryBullet.tscn" id="2_fl7iy"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_u3a37")
+bullet_scene = ExtResource("2_fl7iy")

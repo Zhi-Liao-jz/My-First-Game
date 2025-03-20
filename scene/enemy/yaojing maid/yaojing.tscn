@@ -1,0 +1,89 @@
+[gd_scene load_steps=13 format=3 uid="uid://wh3f2otaufxa"]
+
+[ext_resource type="Material" uid="uid://cj6q6qia5ps5b" path="res://source/shader/FlashMaterial.tres" id="1_0slgj"]
+[ext_resource type="Script" uid="uid://b6ogo38e3erxc" path="res://scene/enemy/yaojing maid/yaojing.gd" id="1_mqbno"]
+[ext_resource type="Script" uid="uid://s1tdf8ql73be" path="res://scene/component/HitboxComponent/Hitbox_Component.gd" id="2_k52sn"]
+[ext_resource type="Script" uid="uid://bam1l1cq7jpan" path="res://scene/component/HealthComponent/Health_Component.gd" id="2_qo0j2"]
+[ext_resource type="Texture2D" uid="uid://yoh41kruy1te" path="res://source/sprite/白妖精.png" id="2_skini"]
+[ext_resource type="Script" uid="uid://gng0ndnn3iu0" path="res://scene/enemy/states/StateMachine.gd" id="3_b21km"]
+[ext_resource type="Script" uid="uid://cu1tc4hkxw35b" path="res://scene/enemy/states/SmoothMove.gd" id="4_vx81n"]
+[ext_resource type="Script" uid="uid://cov8duxesavds" path="res://scene/enemy/states/Dying.gd" id="7_qs466"]
+
+[sub_resource type="Animation" id="Animation_kgavt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/open")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_1ggjp"]
+resource_name = "maoyu_flash"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/open")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gqtrd"]
+_data = {
+&"RESET": SubResource("Animation_kgavt"),
+&"flash": SubResource("Animation_1ggjp")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q3vjr"]
+radius = 24.0
+height = 58.0
+
+[node name="yaojing" type="Node2D"]
+script = ExtResource("1_mqbno")
+drop_resource = Array[float]([100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0])
+drop_money = 100
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = ExtResource("1_0slgj")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_skini")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+&"": SubResource("AnimationLibrary_gqtrd")
+}
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("2_qo0j2")
+max_health = 10.0
+
+[node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("enemy")]
+script = ExtResource("2_k52sn")
+enemy = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(-6, -3)
+shape = SubResource("CapsuleShape2D_q3vjr")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_b21km")
+initial_state = NodePath("SmoothMove")
+
+[node name="SmoothMove" type="Node" parent="StateMachine"]
+script = ExtResource("4_vx81n")
+speed = 20.0
+
+[node name="Dying" type="Node" parent="StateMachine"]
+script = ExtResource("7_qs466")
