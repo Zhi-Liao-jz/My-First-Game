@@ -1,12 +1,8 @@
 extends State
 class_name Dying
-@export var hitbox_component : HitboxComponent
+@onready var hitbox_component : HitboxComponent = get_parent().get_parent().get_node("HitboxComponent")
 var x_velocity
 var y_velocity
-
-func _ready() -> void:
-	enemy=get_parent().get_parent()
-	hitbox_component = enemy.get_node("HitboxComponent")
 
 func Enter():
 	enemy.z_index=100

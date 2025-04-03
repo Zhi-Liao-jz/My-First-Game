@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhrperp0nw5et"]
+
+[ext_resource type="Script" uid="uid://dxs61r7gj78s7" path="res://scene/bullet/WoodBullet/wood_bullet.gd" id="1_gd6t4"]
+[ext_resource type="Texture2D" uid="uid://dwdrc200gtrs3" path="res://source/sprite/叶子.png" id="2_43msr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hlqj3"]
+radius = 15.2871
+
+[node name="WoodBullet" type="Area2D" node_paths=PackedStringArray("ray_cast")]
+script = ExtResource("1_gd6t4")
+ray_cast = NodePath("RayCast2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(5.96046e-08, 0)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_43msr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -1)
+scale = Vector2(0.998749, 0.452874)
+shape = SubResource("CircleShape2D_hlqj3")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(1000, 0)
+collision_mask = 2
+collide_with_areas = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

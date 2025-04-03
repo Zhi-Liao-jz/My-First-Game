@@ -87,6 +87,7 @@ script = ExtResource("3_1dshp")
 max_health = 2.0
 
 [node name="HitboxComponent" type="Area2D" parent="."]
+collision_layer = 3
 script = ExtResource("4_cjhyq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]

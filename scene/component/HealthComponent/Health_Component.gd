@@ -1,12 +1,11 @@
 extends Node
 class_name HealthComponent
 @export var max_health : float
-@export var enemy : Node2D
+@onready var enemy : Node2D = get_parent()
 var health :float
 
 func _ready() -> void:
 	health=max_health
-	enemy=get_parent()
 
 func damage(attack:Attack):
 	health-=attack.attack_damage

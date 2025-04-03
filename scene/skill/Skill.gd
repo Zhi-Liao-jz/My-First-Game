@@ -1,7 +1,8 @@
 extends Node2D
 class_name Skill
 signal Transitioned
-	
+@export var bullet_scene : PackedScene
+@export var icon : Texture
 func Enter():
 	pass
 

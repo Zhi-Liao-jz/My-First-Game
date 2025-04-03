@@ -1,7 +1,6 @@
 extends Skill
-@export var bullet_scene : PackedScene
-var cold=0.1
-var use=10.0
+var cold : float = 0.1
+var use : float = 10.0
 var process : float
 var open : bool
 func Enter():

@@ -1,9 +1,9 @@
 extends Node
-var gravity=980.0
-var max_health=1000.0
-var health=1000.0
-var activation = [0,0,0,0,0,0,0]
-
+var gravity: float =980.0
+var max_health : float =1000.0
+var health : float=1000.0
+var activation : Array[int] = [0,0,0,0,0,0,0]
+var if_erchongshifa : bool = false
 var resources : Array[float] = [0,0,0,0,0,0,0]
 var max_resources : Array[float] = [1000.0,1000.0,1000.0,1000.0,1000.0,1000.0,1000.0]
 var resources_area : Array[int] = [100,100,100,100,100,100,100]
@@ -43,10 +43,12 @@ func _input(event: InputEvent):
 			key=5
 		elif event.keycode==KEY_7:
 			key=6
+		if event.keycode==KEY_SPACE or (key!=-1 and if_erchongshifa==false):
+			for i in range(7):
+				if i == key:
+					continue
+				activation[i]=0
+				activation_change.emit(i,activation[i])
 		if key!=-1:
 			activation[key]^=1
 			activation_change.emit(key,activation[key])
-		if event.keycode==KEY_SPACE:
-			for i in range(7):
-				activation[i]=0
-				activation_change.emit(i,activation[i])

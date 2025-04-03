@@ -1,6 +1,7 @@
 extends Node
 class_name SkillStateMachine
-@export var initial_state:Skill
+@export var initial_state : Skill
+@export var skill_icon : Sprite2D
 var current_state : Skill
 var states : Dictionary = {}
 
@@ -32,6 +33,8 @@ func transition(new_state_name):
 	if current_state:
 		current_state.Exit()
 	new_state.Enter()
+	if new_state.icon:
+		skill_icon.texture=new_state.icon
 	current_state=new_state
 
 func on_child_transition(state,new_state_name):

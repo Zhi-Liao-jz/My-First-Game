@@ -3,4 +3,5 @@
 [ext_resource type="Script" uid="uid://s1tdf8ql73be" path="res://scene/component/HitboxComponent/Hitbox_Component.gd" id="1_xmcn1"]
 
 [node name="HitboxComponent" type="Area2D"]
+collision_layer = 3
 script = ExtResource("1_xmcn1")

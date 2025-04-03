@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://ligvgjtjl5oi"]
+
+[ext_resource type="Script" uid="uid://dylaephu6j3t8" path="res://scene/bullet/GoldBullet/gold_bullet.gd" id="1_stq4j"]
+[ext_resource type="Texture2D" uid="uid://bsl7vib8mbik4" path="res://source/sprite/金色子弹.png" id="2_stq4j"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_00xwy"]
+radius = 12.0
+height = 28.0
+
+[node name="GoldBullet" type="Area2D"]
+script = ExtResource("1_stq4j")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_stq4j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.23306, 1.10445)
+shape = SubResource("CapsuleShape2D_00xwy")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

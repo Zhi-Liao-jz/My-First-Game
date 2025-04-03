@@ -69,9 +69,9 @@ libraries = {
 script = ExtResource("2_qo0j2")
 max_health = 10.0
 
-[node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("enemy")]
+[node name="HitboxComponent" type="Area2D" parent="."]
+collision_layer = 3
 script = ExtResource("2_k52sn")
-enemy = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 position = Vector2(-6, -3)
