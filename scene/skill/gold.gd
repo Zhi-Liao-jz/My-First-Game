@@ -45,4 +45,6 @@ func fire():
 		bullet.attack_damage=bullet.damage_mutiple*bullet.strength/100
 		bullet.max_time=(target-position).length()/bullet.speed
 		bullet.time=bullet.max_time
+	else:
+		bullet.queue_free()
 	process=0

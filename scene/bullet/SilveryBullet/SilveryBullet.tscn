@@ -8,6 +8,7 @@ radius = 12.0
 height = 28.0
 
 [node name="SilveryBullet" type="Area2D"]
+process_mode = 1
 script = ExtResource("1_vkatv")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

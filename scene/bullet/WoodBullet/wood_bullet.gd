@@ -10,7 +10,7 @@ var target : Enemy
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	direction=Vector2(randf(),randf())
+	direction=Vector2(randf(),randf())-Vector2(0.5,0.5)
 	velocity=direction.normalized()*speed
 
 
@@ -27,7 +27,7 @@ func _physics_process(delta: float) -> void:
 		velocity+=direction.normalized()*speed*delta
 	position+=velocity*delta
 	ray_cast.target_position=ray_cast.target_position.rotated(PI*delta)
-	if ray_cast.get_collider():
+	if ray_cast.get_collider():#只检测第二层碰撞
 		var collition=ray_cast.get_collider().get_parent()
 		if target:
 			if (target.position-position).length()>(collition.position-position).length():

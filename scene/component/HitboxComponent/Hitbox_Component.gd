@@ -2,9 +2,12 @@ extends Area2D
 class_name HitboxComponent
 @onready var enemy : Node2D = get_parent()
 @onready var health_component : HealthComponent = get_parent().get_node("HealthComponent")
-@onready var animation_player : AnimationPlayer = get_parent().get_node("Sprite2D/AnimationPlayer")
+@export var animation_player : AnimationPlayer
+var can_be_dameged = true
 
 func damage(attack:Attack):
+	if can_be_dameged == false:
+		return
 	if enemy.weight>0 :
 		enemy.position.x+=attack.force/enemy.weight*30
 	if health_component:

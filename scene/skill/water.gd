@@ -1,9 +1,11 @@
 extends Skill
 var cold=0.02
-var use=1.0
+var use=5.0
 var multiple=3
 var process : float
 var open : bool
+@export var water_3 : Perk
+
 func Enter():
 	open = false
 	process=0.0
@@ -25,6 +27,10 @@ func Update(delta : float):
 		process=min(cold,process+delta)
 		if process>=cold and Manage.resources[1]>=use:
 			process-=cold
+			
+			if Manage.active_perk[Manage.perk_id.water_3] : multiple=3
+			else: multiple=1
+			
 			for i in range(1,multiple+1):
 				var bullet=bullet_scene.instantiate()
 				bullet.position=Vector2(0,0)
@@ -33,8 +39,12 @@ func Update(delta : float):
 				bullet.rotation=bullet.direction.angle()
 				bullet.attack_damage=bullet.damage_mutiple*1.0
 				if i%2:
+					@warning_ignore("integer_division")
 					bullet.position+=ver_direction*10*(i/2)
 				else:
+					@warning_ignore("integer_division")
 					bullet.position-=ver_direction*10*(i/2)
 				add_child(bullet)
+				spawn_bullet.emit(100)
+				
 			Manage.add_resource(1,-use)

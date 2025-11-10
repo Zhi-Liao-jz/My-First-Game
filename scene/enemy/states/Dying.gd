@@ -7,7 +7,7 @@ var y_velocity
 func Enter():
 	enemy.z_index=100
 	if hitbox_component:
-		hitbox_component.queue_free()
+		hitbox_component.can_be_dameged=false
 	x_velocity=50.0
 	y_velocity=-200
 
@@ -21,5 +21,5 @@ func Physics_Update(_delta:float):
 	if enemy:
 		enemy.position += Vector2(x_velocity,y_velocity)*_delta
 		y_velocity+=Manage.gravity*_delta
-		if enemy.position.y>850:
+		if enemy.position.y>750:
 			enemy.die()

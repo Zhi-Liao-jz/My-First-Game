@@ -8,6 +8,7 @@ radius = 22.0
 height = 44.0
 
 [node name="FireBullet" type="Area2D" node_paths=PackedStringArray("hit_box")]
+process_mode = 1
 script = ExtResource("1_vblb8")
 hit_box = NodePath("CollisionShape2D")
 

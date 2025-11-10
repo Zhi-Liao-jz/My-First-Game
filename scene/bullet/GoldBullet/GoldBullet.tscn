@@ -15,6 +15,7 @@ scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_stq4j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+process_mode = 1
 scale = Vector2(1.23306, 1.10445)
 shape = SubResource("CapsuleShape2D_00xwy")
 

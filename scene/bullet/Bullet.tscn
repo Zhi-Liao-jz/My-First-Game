@@ -1,5 +1,9 @@
-[gd_scene format=3 uid="uid://ck5sidmvr0whv"]
+[gd_scene load_steps=2 format=3 uid="uid://ck5sidmvr0whv"]
+
+[ext_resource type="Script" uid="uid://dl8u87p56ahoe" path="res://scene/bullet/bullet.gd" id="1_878pn"]
 
 [node name="Bullet" type="Area2D"]
+process_mode = 1
+script = ExtResource("1_878pn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

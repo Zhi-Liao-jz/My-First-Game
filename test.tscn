@@ -1,0 +1,59 @@
+[gd_scene load_steps=4 format=3 uid="uid://78c3nh52hapy"]
+
+[ext_resource type="Script" uid="uid://crx0023i14sgp" path="res://test.gd" id="1_37kl0"]
+[ext_resource type="Theme" uid="uid://5oa4bj6gyrul" path="res://source/theme/az_theme.tres" id="2_6uqi0"]
+[ext_resource type="Script" uid="uid://d04shbn3dg1c3" path="res://source/script/PerkMenu.gd" id="3_ppyta"]
+
+[node name="Control" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 30.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="商店" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 576.0
+offset_top = 732.0
+offset_right = 616.0
+offset_bottom = 772.0
+
+[node name="商店页面" type="Panel" parent="商店"]
+layout_mode = 0
+offset_left = -576.0
+offset_top = -732.0
+offset_right = 576.0
+offset_bottom = -79.0
+theme = ExtResource("2_6uqi0")
+
+[node name="perk_menu" type="Panel" parent="商店/商店页面" node_paths=PackedStringArray("initial_state")]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 33.0
+offset_top = 40.0
+offset_right = -673.0
+offset_bottom = -77.0
+script = ExtResource("3_ppyta")
+initial_state = NodePath("silvery")
+
+[node name="silvery" type="Control" parent="商店/商店页面/perk_menu"]
+anchors_preset = 0
+offset_right = 36.0
+offset_bottom = 43.0
+
+[node name="perk1_panel" type="PanelContainer" parent="商店/商店页面/perk_menu/silvery"]
+layout_mode = 0
+offset_left = 107.0
+offset_top = 187.0
+offset_right = 147.0
+offset_bottom = 227.0
+scale = Vector2(0.5, 0.5)
+
+[node name="PanelContainer" type="PanelContainer" parent="商店/商店页面/perk_menu/silvery/perk1_panel"]
+z_index = 1
+layout_mode = 2
+script = ExtResource("1_37kl0")

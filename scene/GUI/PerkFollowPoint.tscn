@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://ev2ux37e48ne"]
+
+[node name="perk_follow_point" type="Control"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 3
+anchors_preset = 0

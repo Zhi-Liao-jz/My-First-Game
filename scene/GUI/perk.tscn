@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://btsn3ny70pisc"]
+
+[ext_resource type="Script" uid="uid://drvehv8uoyx4f" path="res://scene/GUI/perk.gd" id="1_ybyf6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pb0pt"]
+bg_color = Color(0.5983088, 0.59830886, 0.5983088, 0)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ybyf6"]
+bg_color = Color(0.5983088, 0.59830886, 0.5983088, 0)
+draw_center = false
+
+[sub_resource type="Theme" id="Theme_ybyf6"]
+Button/colors/icon_normal_color = Color(1, 1, 1, 0)
+Button/styles/hover = SubResource("StyleBoxFlat_pb0pt")
+Button/styles/normal = SubResource("StyleBoxFlat_ybyf6")
+
+[node name="Perk" type="TextureRect"]
+offset_right = 64.0
+offset_bottom = 64.0
+scale = Vector2(0.25, 0.25)
+stretch_mode = 5
+script = ExtResource("1_ybyf6")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+theme = SubResource("Theme_ybyf6")
+
+[connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
+[connection signal="button_up" from="Button" to="." method="_on_button_button_up"]
+[connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
