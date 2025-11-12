@@ -31,7 +31,7 @@ func _physics_process(delta: float) -> void:
 	scale.y=fire_strength/50.0
 
 func _on_area_entered(area: Area2D) -> void:
-	if area is HitboxComponent:
+	if area is HitboxComponent and area.can_be_damaged:
 		var attack = Attack.new()
 		attack.attack_damage=attack_damage*fire_strength/100.0
 		area.damage(attack)

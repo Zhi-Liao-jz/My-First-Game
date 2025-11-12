@@ -23,7 +23,7 @@ func input(event: InputEvent):
 		process=0.0
 
 func Update(delta : float):
-	if open and Manage.resources[1]>=use:
+	if open and Manage.resources[1]>=use and get_global_mouse_position().y<650:
 		process=min(cold,process+delta)
 		if process>=cold and Manage.resources[1]>=use:
 			process-=cold

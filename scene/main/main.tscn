@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://b1c1sqoj8chgn"]
+[gd_scene load_steps=54 format=3 uid="uid://b1c1sqoj8chgn"]
 
 [ext_resource type="Script" uid="uid://bnbjdmwlmm5xv" path="res://scene/main/main.gd" id="1_axug6"]
 [ext_resource type="Texture2D" uid="uid://bvh4adudqbb5n" path="res://source/sprite/主要场景.png" id="2_kuow0"]
@@ -48,6 +48,7 @@
 [ext_resource type="Texture2D" uid="uid://kriio3klntio" path="res://source/sprite/perk/FFF.png" id="43_j6myp"]
 [ext_resource type="Texture2D" uid="uid://1xxwrvkhoiyu" path="res://source/sprite/perk/赛钱.png" id="46_wyl2v"]
 [ext_resource type="Script" uid="uid://ce3cxgd6ni4ux" path="res://source/script/perk/wuzhongshengyou.gd" id="47_tqshy"]
+[ext_resource type="Texture2D" uid="uid://bsrrty080jhk0" path="res://source/sprite/perk/咲夜的怀表.png" id="49_xrq8m"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hxavl"]
 animations = [{
@@ -475,6 +476,7 @@ theme_override_font_sizes/font_size = 23
 text = "商店"
 
 [node name="商店页面" type="Panel" parent="UI(use it)/商店"]
+visible = false
 layout_mode = 0
 offset_left = -576.0
 offset_top = -732.0
@@ -714,6 +716,26 @@ perk_name = "无中生有"
 perk_description = "每次生成弹幕时，获得少量随机元素。
 电表倒转哦哦哦。
 （用太多会被巫女找上）"
+active_perk_panel = NodePath("../../../状态栏/avtive_perk")
+
+[node name="Control7" parent="UI(use it)/商店/商店页面/perk_menu" instance=ExtResource("41_6au48")]
+layout_mode = 0
+offset_left = 236.0
+offset_top = 116.0
+offset_right = 300.0
+offset_bottom = 180.0
+
+[node name="double_use" parent="UI(use it)/商店/商店页面/perk_menu/Control7" node_paths=PackedStringArray("active_perk_panel") instance=ExtResource("38_gp7ks")]
+z_index = 1
+layout_mode = 0
+scale = Vector2(1, 1)
+texture = ExtResource("49_xrq8m")
+perk_id = 6
+perk_name = "咲夜特制静止时计"
+perk_description = "咲夜小姐的得意之作，
+按下 ESC 即可暂停时间，
+但什么是ESC？"
+number = 1
 active_perk_panel = NodePath("../../../状态栏/avtive_perk")
 
 [connection signal="pressed" from="UI(use it)/商店/商店按钮" to="UI(use it)/商店" method="_on_商店按钮_pressed"]

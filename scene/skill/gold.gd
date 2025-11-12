@@ -22,7 +22,7 @@ func Update(delta : float):
 		bullet.rotation+=PI*delta
 
 func input(event: InputEvent):
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and get_global_mouse_position().y<650:
 		if event.pressed:
 			open=true
 			bullet=bullet_scene.instantiate()
@@ -46,5 +46,5 @@ func fire():
 		bullet.max_time=(target-position).length()/bullet.speed
 		bullet.time=bullet.max_time
 	else:
-		bullet.queue_free()
+		if bullet: bullet.queue_free()
 	process=0

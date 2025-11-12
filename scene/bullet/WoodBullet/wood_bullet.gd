@@ -36,7 +36,7 @@ func _physics_process(delta: float) -> void:
 			target=collition
 
 func _on_area_entered(area: Area2D) -> void:
-	if area is HitboxComponent:
+	if area is HitboxComponent and area.can_be_damaged:
 		var attack = Attack.new()
 		attack.attack_damage=attack_damage
 		area.damage(attack)

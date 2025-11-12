@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://cpps8eyd2ggnf"]
+
+[ext_resource type="Script" uid="uid://1bhm2hfsllnf" path="res://scene/bullet/FireBombBullet/fire_bomb_piece.gd" id="1_3fxvi"]
+[ext_resource type="Texture2D" uid="uid://duon520lmiv1h" path="res://source/sprite/红魔馆.png" id="2_3fxvi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1m44h"]
+radius = 14.0
+
+[sub_resource type="Curve" id="Curve_3fxvi"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.56790125, 0.59550565), 0.0, 0.0, 0, 0, Vector2(0.9074074, 0.04494381), 0.0, 0.0, 0, 0, Vector2(0.98148155, 0.033707857), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[node name="FireBombPiece" type="Area2D"]
+script = ExtResource("1_3fxvi")
+damage_mutiple = 1.0
+speed = 600.0
+metadata/_custom_type_script = "uid://dl8u87p56ahoe"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(18.892157, 18.892157, 0, 1)
+rotation = 1.5707964
+scale = Vector2(0.912, 0.912)
+texture = ExtResource("2_3fxvi")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 3)
+shape = SubResource("CircleShape2D_1m44h")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(5, -5)
+rect = Rect2(-10, 0, 10, 10)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 24
+lifetime = 0.3
+emission_shape = 3
+emission_rect_extents = Vector2(10, 10)
+direction = Vector2(-1, 0)
+spread = 5.87
+gravity = Vector2(0, 0)
+angle_min = -924.0
+angle_max = 720.0
+scale_amount_min = 16.0
+scale_amount_max = 24.0
+scale_amount_curve = SubResource("Curve_3fxvi")
+color = Color(0.42365062, 0.42365065, 0.42365062, 1)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

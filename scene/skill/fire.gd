@@ -15,11 +15,13 @@ func Exit():
 func input(event: InputEvent):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
-			if Manage.active_perk[Manage.perk_id.fire_bomb]:
+			if Manage.active_perk[Manage.perk_id.fire_bomb] and Manage.resources[0]>=20*use and get_global_mouse_position().y<650:
 				var bullet=bomb_bullet_scene.instantiate()
-				bullet.direction=event.position-position
+				bullet.target_position=event.position
+				bullet.be_fired()
 				bullet.attack_damage=bullet.damage_mutiple*1.0
 				add_child(bullet)
+				Manage.add_resource(0,-20*use)
 			else:
 				open=true
 		else:
@@ -27,7 +29,7 @@ func input(event: InputEvent):
 		process=0.0
 
 func Update(delta : float):
-	if open and Manage.resources[0]>=use and Manage.active_perk[Manage.perk_id.fire_bomb]==0:
+	if open and Manage.resources[0]>=use and Manage.active_perk[Manage.perk_id.fire_bomb]==0 and get_global_mouse_position().y<650:
 		process+=delta
 		while process>cold and Manage.resources[0]>=use:
 			process-=cold

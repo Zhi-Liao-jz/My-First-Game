@@ -7,7 +7,7 @@ var y_velocity
 func Enter():
 	enemy.z_index=100
 	if hitbox_component:
-		hitbox_component.can_be_dameged=false
+		hitbox_component.can_be_damaged=false
 	x_velocity=50.0
 	y_velocity=-200
 
