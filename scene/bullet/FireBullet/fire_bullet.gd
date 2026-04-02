@@ -1,16 +1,13 @@
-extends Area2D
-@export var damage_mutiple =1.0
-@export var speed = 200.0
+extends Bullet
 @export var fire_strength = 100.0
 @export var hit_box : CollisionShape2D
 var fire_strength_decrease_time = 0.08
 var fire_strength_decrease_hit = 1.0
-var attack_damage : float
-var direction : Vector2
 var velocity : Vector2
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	super()
 	speed = speed*(0.5+randf())
 	fire_strength = fire_strength * (0.7+0.6*randf())
 	velocity=direction.normalized()*speed

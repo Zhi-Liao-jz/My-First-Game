@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cpps8eyd2ggnf"]
+[gd_scene format=3 uid="uid://cpps8eyd2ggnf"]
 
 [ext_resource type="Script" uid="uid://1bhm2hfsllnf" path="res://scene/bullet/FireBombBullet/fire_bomb_piece.gd" id="1_3fxvi"]
 [ext_resource type="Texture2D" uid="uid://duon520lmiv1h" path="res://source/sprite/红魔馆.png" id="2_3fxvi"]
+[ext_resource type="Script" uid="uid://3agu6grv682m" path="res://scene/component/MoveComponent/MoveComponent.gd" id="3_1m44h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1m44h"]
 radius = 14.0
@@ -10,13 +11,14 @@ radius = 14.0
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.56790125, 0.59550565), 0.0, 0.0, 0, 0, Vector2(0.9074074, 0.04494381), 0.0, 0.0, 0, 0, Vector2(0.98148155, 0.033707857), 0.0, 0.0, 0, 0]
 point_count = 4
 
-[node name="FireBombPiece" type="Area2D"]
+[node name="FireBombPiece" type="Area2D" unique_id=508302461 node_paths=PackedStringArray("move_component")]
 script = ExtResource("1_3fxvi")
+move_component = NodePath("MoveComponent")
 damage_mutiple = 1.0
-speed = 600.0
+init_speed = 600.0
 metadata/_custom_type_script = "uid://dl8u87p56ahoe"
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=430218567]
 self_modulate = Color(18.892157, 18.892157, 0, 1)
 rotation = 1.5707964
 scale = Vector2(0.912, 0.912)
@@ -24,15 +26,15 @@ texture = ExtResource("2_3fxvi")
 region_enabled = true
 region_rect = Rect2(0, 0, 32, 32)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=882742302]
 position = Vector2(-2, 3)
 shape = SubResource("CircleShape2D_1m44h")
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=450938480]
 position = Vector2(5, -5)
 rect = Rect2(-10, 0, 10, 10)
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=437065784]
 amount = 24
 lifetime = 0.3
 emission_shape = 3
@@ -46,6 +48,10 @@ scale_amount_min = 16.0
 scale_amount_max = 24.0
 scale_amount_curve = SubResource("Curve_3fxvi")
 color = Color(0.42365062, 0.42365065, 0.42365062, 1)
+
+[node name="MoveComponent" type="Node" parent="." unique_id=45606603]
+script = ExtResource("3_1m44h")
+metadata/_custom_type_script = "uid://3agu6grv682m"
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

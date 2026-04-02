@@ -5,7 +5,7 @@ class_name SmoothMove
 func Enter():
 	pass
 
-func Exix():
+func Exit():
 	pass
 	
 func Update(_delta:float):

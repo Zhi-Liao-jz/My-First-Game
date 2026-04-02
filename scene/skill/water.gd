@@ -4,7 +4,6 @@ var use=5.0
 var multiple=3
 var process : float
 var open : bool
-@export var water_3 : Perk
 
 func Enter():
 	open = false
@@ -33,8 +32,8 @@ func Update(delta : float):
 			
 			for i in range(1,multiple+1):
 				var bullet=bullet_scene.instantiate()
-				bullet.position=Vector2(0,0)
-				bullet.direction=(get_viewport().get_mouse_position()-position).normalized()
+				bullet.global_position=global_position
+				bullet.direction=(get_viewport().get_mouse_position()-global_position).normalized()
 				var ver_direction=Vector2(bullet.direction[1],-bullet.direction[0])
 				bullet.rotation=bullet.direction.angle()
 				bullet.attack_damage=bullet.damage_mutiple*1.0
@@ -44,7 +43,7 @@ func Update(delta : float):
 				else:
 					@warning_ignore("integer_division")
 					bullet.position-=ver_direction*10*(i/2)
-				add_child(bullet)
+				get_tree().current_scene.add_child(bullet)
 				spawn_bullet.emit(100)
 				
 			Manage.add_resource(1,-use)

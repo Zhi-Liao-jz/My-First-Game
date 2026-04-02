@@ -73,10 +73,10 @@ func bao_fa_si_san() -> void:
 		piece.get_node("Sprite2D").region_rect=Rect2(Vector2(16,16)+piece_position[i],Vector2(32,32))
 		piece.direction=piece_position[i].rotated(global_rotation+PI/2)
 		piece.global_position=global_position+piece_position[i].rotated(global_rotation+PI/2)
-		print(piece.global_position-global_position)
-		print(piece.direction)
 		piece.global_rotation=global_rotation
 		piece.global_scale=global_scale
+	for i in range(8):
+		fire()
 
 func fire() -> void:
 	var bullet=bullet_scene.instantiate()

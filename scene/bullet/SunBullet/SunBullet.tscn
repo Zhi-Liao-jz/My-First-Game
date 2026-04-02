@@ -1,0 +1,300 @@
+[gd_scene format=3 uid="uid://cyhnx7leygdyh"]
+
+[ext_resource type="Script" uid="uid://bjun6oujpl8gc" path="res://scene/bullet/SunBullet/sun_bullet.gd" id="1_1o7bk"]
+[ext_resource type="Texture2D" uid="uid://brftjwg1l7nh6" path="res://source/sprite/爆球.png" id="2_kc18e"]
+[ext_resource type="Texture2D" uid="uid://b12xwgpcqud00" path="res://source/sprite/爆炸圆环.png" id="3_yneks"]
+[ext_resource type="Texture2D" uid="uid://csy08m6ruewgl" path="res://source/sprite/更白的爆球.png" id="3_yydty"]
+[ext_resource type="Texture2D" uid="uid://cn176kao5ql6f" path="res://source/sprite/神秘纯白三角形.png" id="4_yneks"]
+[ext_resource type="Script" uid="uid://3agu6grv682m" path="res://scene/component/MoveComponent/MoveComponent.gd" id="5_ny60x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yydty"]
+
+[sub_resource type="Curve" id="Curve_ny60x"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.5284359), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_yydty"]
+curve = SubResource("Curve_ny60x")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_r4xfg"]
+particle_flag_disable_z = true
+spread = 180.0
+flatness = 0.194
+initial_velocity_min = 1500.0
+initial_velocity_max = 1500.0
+gravity = Vector3(0, 0, 0)
+damping_min = 2000.0001
+damping_max = 3000.0002
+scale_min = 0.39999998
+scale_max = 0.7
+scale_curve = SubResource("CurveTexture_yydty")
+
+[sub_resource type="Curve" id="Curve_c42xb"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.22309417), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_nm8k6"]
+curve = SubResource("Curve_c42xb")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2ovhx"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+scale_min = 1000.0
+scale_max = 1000.0
+scale_curve = SubResource("CurveTexture_nm8k6")
+
+[sub_resource type="Animation" id="Animation_ny60x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/sanjiao1:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/sanjiao5:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3.1415927]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node2D/sanjiao6:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [5.2359877]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Node2D/sanjiao7:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.18884294]
+}
+
+[sub_resource type="Animation" id="Animation_yydty"]
+resource_name = "spin"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/sanjiao1:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.283185307179586]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/sanjiao2:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [2.0943951023931953, 8.377580409572781]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node2D/sanjiao3:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [4.1887902047863905, 10.471975511965978]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Node2D/sanjiao4:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -12.566370614359172]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Node2D/sanjiao5:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.5707963267948966, -10.995574287564276]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Node2D/sanjiao6:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [3.141592653589793, -9.42477796076938]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Node2D/sanjiao7:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [4.71238898038469, -7.853981633974483]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r4xfg"]
+_data = {
+&"RESET": SubResource("Animation_ny60x"),
+&"spin": SubResource("Animation_yydty")
+}
+
+[node name="SunBullet" type="Area2D" unique_id=1834037112 node_paths=PackedStringArray("panding", "donghua", "one", "move_component")]
+z_index = 6
+script = ExtResource("1_1o7bk")
+yinbaoshijian = 1.0
+chixushijian = 3.0
+panding = NodePath("CollisionShape2D")
+donghua = NodePath("Node2D")
+one = NodePath("one")
+shanghaijiange = 0.2
+move_component = NodePath("MoveComponent")
+damage_mutiple = 0.2
+metadata/_custom_type_script = "uid://dl8u87p56ahoe"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1618653344]
+scale = Vector2(501.41507, 317.61102)
+shape = SubResource("RectangleShape2D_yydty")
+disabled = true
+
+[node name="one" type="Sprite2D" parent="." unique_id=1839352640]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_kc18e")
+
+[node name="MoveComponent" type="Node" parent="." unique_id=1651745512]
+script = ExtResource("5_ny60x")
+metadata/_custom_type_script = "uid://3agu6grv682m"
+
+[node name="Node2D" type="Node2D" parent="." unique_id=913871449]
+visible = false
+scale = Vector2(501.41507, 317.61102)
+
+[node name="ColorRect" type="ColorRect" parent="Node2D" unique_id=1779017800]
+offset_left = -25.422058
+offset_top = -36.96346
+offset_right = 14.577942
+offset_bottom = 3.036541
+scale = Vector2(731.39667, 612.4482)
+color = Color(1, 0.8492482, 0.80967695, 0.9411765)
+metadata/_edit_use_anchors_ = true
+
+[node name="balls" type="GPUParticles2D" parent="Node2D" unique_id=748393943]
+scale = Vector2(0.0019943558, 0.0031485055)
+amount = 24
+texture = ExtResource("3_yydty")
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_r4xfg")
+
+[node name="rings" type="GPUParticles2D" parent="Node2D" unique_id=945533134]
+scale = Vector2(0.0019943558, 0.0031485055)
+amount = 12
+texture = ExtResource("3_yneks")
+lifetime = 4.0
+process_material = SubResource("ParticleProcessMaterial_2ovhx")
+
+[node name="sanjiao1" type="Sprite2D" parent="Node2D" unique_id=1346793292]
+position = Vector2(1.0927899e-07, -4.454354e-05)
+scale = Vector2(0.012225402, -0.047227584)
+texture = ExtResource("4_yneks")
+offset = Vector2(-1.3085173e-05, 68.26761)
+
+[node name="sanjiao2" type="Sprite2D" parent="Node2D" unique_id=1663711611]
+position = Vector2(0.0001641796, -0.001020195)
+rotation = -1.2201945
+scale = Vector2(0.01779726, -0.03505434)
+skew = 0.38851285
+texture = ExtResource("4_yneks")
+offset = Vector2(0.19600141, 68.2049)
+
+[node name="sanjiao3" type="Sprite2D" parent="Node2D" unique_id=1591358087]
+position = Vector2(3.803932e-09, -3.0026488e-09)
+rotation = 1.2201946
+scale = Vector2(0.017797261, -0.035054337)
+skew = -0.38851297
+texture = ExtResource("4_yneks")
+offset = Vector2(-1.3085173e-05, 68.26761)
+
+[node name="sanjiao4" type="Sprite2D" parent="Node2D" unique_id=407955654]
+position = Vector2(1.0927899e-07, -4.454354e-05)
+rotation = 3.1415927
+scale = Vector2(0.0059830677, -0.047227584)
+texture = ExtResource("4_yneks")
+offset = Vector2(-1.3085173e-05, 68.26761)
+
+[node name="sanjiao5" type="Sprite2D" parent="Node2D" unique_id=502656999]
+position = Vector2(1.0927899e-07, -4.454354e-05)
+rotation = 3.1415927
+scale = Vector2(0.009445516, -0.029915337)
+texture = ExtResource("4_yneks")
+offset = Vector2(-1.3085173e-05, 68.26761)
+
+[node name="sanjiao6" type="Sprite2D" parent="Node2D" unique_id=133669420]
+position = Vector2(1.0927899e-07, -4.454354e-05)
+rotation = 5.2359877
+scale = Vector2(0.0059830677, -0.047227584)
+texture = ExtResource("4_yneks")
+offset = Vector2(-1.3085173e-05, 68.26761)
+
+[node name="sanjiao7" type="Sprite2D" parent="Node2D" unique_id=195468701]
+position = Vector2(1.0927899e-07, -4.454354e-05)
+rotation = -0.18884294
+scale = Vector2(0.009445516, -0.029915337)
+texture = ExtResource("4_yneks")
+offset = Vector2(-1.3085173e-05, 68.26761)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Node2D" unique_id=1683993434]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_r4xfg")
+autoplay = &"spin"
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

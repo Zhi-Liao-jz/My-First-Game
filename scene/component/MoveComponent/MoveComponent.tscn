@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ba0ir1vrbuqh8"]
+
+[ext_resource type="Script" uid="uid://3agu6grv682m" path="res://scene/component/MoveComponent/MoveComponent.gd" id="1_cp6h7"]
+
+[node name="MoveComponent" type="Node" groups=["移动组件"]]
+script = ExtResource("1_cp6h7")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://d2bifvyesbbkp"]
+[gd_scene format=3 uid="uid://d2bifvyesbbkp"]
 
 [ext_resource type="Script" uid="uid://dpqy1rctmwnua" path="res://scene/bullet/WaterBullet/water_bullet.gd" id="1_hlqj3"]
 [ext_resource type="Texture2D" uid="uid://b41q3idyr61g7" path="res://source/sprite/水珠.png" id="2_hlqj3"]
@@ -6,21 +6,22 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_hlqj3"]
 radius = 13.0
 
-[node name="WaterBullet" type="Area2D"]
+[node name="WaterBullet" type="Area2D" unique_id=230639876]
 process_mode = 1
 script = ExtResource("1_hlqj3")
+damage_mutiple = 0.1
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1223555161]
 position = Vector2(5.96046e-08, 0)
 scale = Vector2(0.179687, 0.117188)
 texture = ExtResource("2_hlqj3")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=234582656]
 position = Vector2(0, -4.76837e-07)
 scale = Vector2(0.791337, 0.516921)
 shape = SubResource("CircleShape2D_hlqj3")
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1684259550]
 scale = Vector2(0.86428, 0.423453)
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -6,5 +6,5 @@ func input(event: InputEvent):
 		var bullet=bullet_scene.instantiate()
 		bullet.position=event.position
 		bullet.attack_damage=bullet.damage_mutiple*1.0
-		add_child(bullet)
+		get_tree().current_scene.add_child(bullet)
 		Manage.add_resource(2,-use)

@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 class_name SkillStateMachine
 @export var initial_state : Skill
 @export var skill_icon : Sprite2D
@@ -21,6 +21,11 @@ func _ready():
 func _process(delta: float):
 	if current_state and not get_tree().paused:
 		current_state.Update(delta)
+	if Manage.active_perk[Manage.perk_id.chuizhiluoxia]:
+		global_position=get_global_mouse_position()
+		global_position.y=0
+	else :
+		global_position=Vector2(190,206)
 
 func _physics_process(delta: float):
 	if current_state and not get_tree().paused:

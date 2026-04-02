@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://5oa4bj6gyrul"]
+[gd_resource type="Theme" format=3 uid="uid://5oa4bj6gyrul"]
 
 [ext_resource type="Texture2D" uid="uid://dphp8yqem7qe" path="res://source/sprite/边框.png" id="1_kvh1r"]
 

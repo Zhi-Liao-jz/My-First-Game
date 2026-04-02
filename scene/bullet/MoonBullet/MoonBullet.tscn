@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://bys8qyi2aeght"]
+
+[ext_resource type="Texture2D" uid="uid://bmjnu233tjrb2" path="res://source/sprite/法阵.png" id="1_pfal4"]
+[ext_resource type="Script" uid="uid://dqj4ddcpb5ro5" path="res://scene/bullet/MoonBullet/moon_bullet.gd" id="1_q2k4x"]
+[ext_resource type="Script" uid="uid://3agu6grv682m" path="res://scene/component/MoveComponent/MoveComponent.gd" id="3_47hux"]
+[ext_resource type="Texture2D" uid="uid://dwd21g3fpgnpg" path="res://source/sprite/光柱.png" id="4_2ths6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_af1ts"]
+size = Vector2(229, 736)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_pfal4"]
+viewport_path = NodePath("SubViewport")
+
+[node name="MoonBullet" type="Area2D" unique_id=676363275 node_paths=PackedStringArray("tupian", "fazhen", "panding", "guangzhu", "move_component")]
+z_index = 5
+y_sort_enabled = true
+script = ExtResource("1_q2k4x")
+tupian = NodePath("SubViewport/Sprite2D")
+fazhen = NodePath("fazhen")
+panding = NodePath("CollisionShape2D")
+guangzhu = [NodePath("光柱"), NodePath("光柱2"), NodePath("光柱3"), NodePath("光柱4"), NodePath("光柱5"), NodePath("光柱6")]
+shanghaijiange = 0.2
+move_component = NodePath("MoveComponent")
+damage_mutiple = 0.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1099252507]
+position = Vector2(3.5, -8)
+shape = SubResource("RectangleShape2D_af1ts")
+
+[node name="fazhen" type="Sprite2D" parent="." unique_id=1715827751]
+position = Vector2(0, 271)
+scale = Vector2(3.1368632, 0.9257037)
+texture = SubResource("ViewportTexture_pfal4")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=722641644]
+transparent_bg = true
+size = Vector2i(64, 64)
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewport" unique_id=1413221936]
+texture = ExtResource("1_pfal4")
+
+[node name="Camera2D" type="Camera2D" parent="SubViewport" unique_id=1973303214]
+
+[node name="MoveComponent" type="Node" parent="." unique_id=938528909]
+script = ExtResource("3_47hux")
+metadata/_custom_type_script = "uid://3agu6grv682m"
+
+[node name="光柱" type="Sprite2D" parent="." unique_id=505099463]
+y_sort_enabled = true
+position = Vector2(-98, -13)
+scale = Vector2(0.656, 12)
+texture = ExtResource("4_2ths6")
+
+[node name="光柱2" type="Sprite2D" parent="." unique_id=1876803903]
+y_sort_enabled = true
+position = Vector2(-40, -40)
+scale = Vector2(0.656, 12)
+texture = ExtResource("4_2ths6")
+
+[node name="光柱3" type="Sprite2D" parent="." unique_id=1714443743]
+y_sort_enabled = true
+position = Vector2(35, -40.000004)
+scale = Vector2(0.656, 12)
+texture = ExtResource("4_2ths6")
+
+[node name="光柱4" type="Sprite2D" parent="." unique_id=1423203995]
+y_sort_enabled = true
+position = Vector2(104, -14.000006)
+scale = Vector2(0.63878286, 11.9799795)
+texture = ExtResource("4_2ths6")
+
+[node name="光柱5" type="Sprite2D" parent="." unique_id=247214669]
+y_sort_enabled = true
+position = Vector2(-42, 17.999992)
+scale = Vector2(0.656, 12)
+texture = ExtResource("4_2ths6")
+
+[node name="光柱6" type="Sprite2D" parent="." unique_id=1760323630]
+y_sort_enabled = true
+position = Vector2(32, 18.999992)
+scale = Vector2(0.656, 12)
+texture = ExtResource("4_2ths6")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

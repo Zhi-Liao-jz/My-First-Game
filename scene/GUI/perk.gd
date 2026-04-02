@@ -16,11 +16,9 @@ var velocity=Vector2.ZERO
 
 func perk_active() -> void:
 	Manage.active_perk[perk_id]=1
-	pass
 
 func perk_cancel() -> void:
 	Manage.active_perk[perk_id]=0
-	pass
 
 func _ready() -> void:
 	follow_point=get_parent()

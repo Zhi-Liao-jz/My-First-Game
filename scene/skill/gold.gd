@@ -16,6 +16,7 @@ func Exit():
 
 func Update(delta : float):
 	if open and Manage.resources[3]>=0:
+		bullet.global_position=global_position
 		process+=charge_speed*delta
 		Manage.add_resource(3,-use*delta)
 		bullet.strength=process
@@ -26,11 +27,11 @@ func input(event: InputEvent):
 		if event.pressed:
 			open=true
 			bullet=bullet_scene.instantiate()
-			bullet.position=Vector2(0,0)
+			bullet.global_position=global_position
 			bullet.direction=Vector2(0,0)
 			bullet.attack_damage=0
 			bullet.max_time=999999
-			add_child(bullet)
+			get_tree().current_scene.add_child(bullet)
 		else:
 			open = false
 			fire()
@@ -40,8 +41,8 @@ func input(event: InputEvent):
 func fire():
 	if process>10:
 		var target=get_viewport().get_mouse_position()
-		bullet.position=Vector2(0,0)
-		bullet.direction=target-position
+		bullet.global_position=global_position
+		bullet.direction=target-global_position
 		bullet.attack_damage=bullet.damage_mutiple*bullet.strength/100
 		bullet.max_time=(target-position).length()/bullet.speed
 		bullet.time=bullet.max_time

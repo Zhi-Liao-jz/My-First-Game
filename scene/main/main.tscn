@@ -1,6 +1,7 @@
-[gd_scene load_steps=54 format=3 uid="uid://b1c1sqoj8chgn"]
+[gd_scene format=3 uid="uid://b1c1sqoj8chgn"]
 
 [ext_resource type="Script" uid="uid://bnbjdmwlmm5xv" path="res://scene/main/main.gd" id="1_axug6"]
+[ext_resource type="Script" uid="uid://dtlty1xtx4m5y" path="res://scene/main/test.gd" id="1_kwnex"]
 [ext_resource type="Texture2D" uid="uid://bvh4adudqbb5n" path="res://source/sprite/主要场景.png" id="2_kuow0"]
 [ext_resource type="Texture2D" uid="uid://beaufcclocxw6" path="res://source/sprite/阿空1.png" id="3_htxke"]
 [ext_resource type="Texture2D" uid="uid://tjevihcl6vc4" path="res://source/sprite/阿空2.png" id="4_7ogvu"]
@@ -33,7 +34,17 @@
 [ext_resource type="Script" uid="uid://b1qyvpllijuf0" path="res://scene/skill/gold.gd" id="21_ep0fl"]
 [ext_resource type="Texture2D" uid="uid://3uahr6qyu0uf" path="res://source/sprite/布丁.png" id="22_52l20"]
 [ext_resource type="PackedScene" uid="uid://ligvgjtjl5oi" path="res://scene/bullet/GoldBullet/GoldBullet.tscn" id="22_v4x5e"]
+[ext_resource type="Script" uid="uid://ceo2fspmhgp86" path="res://scene/skill/earth.gd" id="23_1fng4"]
 [ext_resource type="Texture2D" uid="uid://bsl7vib8mbik4" path="res://source/sprite/金色子弹.png" id="23_bsts1"]
+[ext_resource type="PackedScene" uid="uid://cqqtkgo5mixd4" path="res://scene/bullet/EarthBullet/EarthBullet.tscn" id="24_dkqdp"]
+[ext_resource type="Texture2D" uid="uid://cymrcih4fjvbu" path="res://source/sprite/泥巴.png" id="25_nb12r"]
+[ext_resource type="Shader" uid="uid://dl3hj1060rhay" path="res://source/shader/sprite_outline.gdshader" id="26_lg5kp"]
+[ext_resource type="Script" uid="uid://cs5rjsihhgyx5" path="res://scene/skill/moon.gd" id="28_wrair"]
+[ext_resource type="Script" uid="uid://d2sm2uxf6qo5v" path="res://scene/skill/sun.gd" id="29_lbh7x"]
+[ext_resource type="PackedScene" uid="uid://bys8qyi2aeght" path="res://scene/bullet/MoonBullet/MoonBullet.tscn" id="29_wm6ru"]
+[ext_resource type="Texture2D" uid="uid://df67ap7ofmn7a" path="res://source/sprite/鸭子乐.png" id="30_6jed6"]
+[ext_resource type="Texture2D" uid="uid://butjahmpgcixn" path="res://source/sprite/阿空头像.png" id="32_6jed6"]
+[ext_resource type="PackedScene" uid="uid://cyhnx7leygdyh" path="res://scene/bullet/SunBullet/SunBullet.tscn" id="32_eq2ik"]
 [ext_resource type="Script" uid="uid://cgdjs8v8ey7fr" path="res://scene/main/resources.gd" id="33_s1qg3"]
 [ext_resource type="Script" uid="uid://ban425yx6sw34" path="res://source/script/shop_ui.gd" id="35_bsts1"]
 [ext_resource type="Theme" uid="uid://5oa4bj6gyrul" path="res://source/theme/az_theme.tres" id="35_v4x5e"]
@@ -49,6 +60,7 @@
 [ext_resource type="Texture2D" uid="uid://1xxwrvkhoiyu" path="res://source/sprite/perk/赛钱.png" id="46_wyl2v"]
 [ext_resource type="Script" uid="uid://ce3cxgd6ni4ux" path="res://source/script/perk/wuzhongshengyou.gd" id="47_tqshy"]
 [ext_resource type="Texture2D" uid="uid://bsrrty080jhk0" path="res://source/sprite/perk/咲夜的怀表.png" id="49_xrq8m"]
+[ext_resource type="Script" uid="uid://dx6iyn173ph8y" path="res://source/script/perk/chuizhiluoxia.gd" id="55_pgij3"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hxavl"]
 animations = [{
@@ -63,6 +75,11 @@ animations = [{
 "name": &"default",
 "speed": 2.0
 }]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nb12r"]
+shader = ExtResource("26_lg5kp")
+shader_parameter/outline_width = 3.0
+shader_parameter/outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_d28pq"]
 animations = [{
@@ -88,27 +105,29 @@ texture_margin_top = 24.0
 texture_margin_right = 24.0
 texture_margin_bottom = 24.0
 
-[node name="main" type="Node2D"]
+[node name="main" type="Node2D" unique_id=652133771]
 y_sort_enabled = true
+script = ExtResource("1_kwnex")
 
-[node name="场景" type="Sprite2D" parent="."]
+[node name="场景" type="Sprite2D" parent="." unique_id=862995587]
 z_index = -100
 position = Vector2(576, 324)
 scale = Vector2(0.9, 0.9)
 texture = ExtResource("2_kuow0")
 
-[node name="MaoYu" parent="." instance=ExtResource("6_ry0x4")]
+[node name="MaoYu" parent="." unique_id=1986412285 instance=ExtResource("6_ry0x4")]
 position = Vector2(662, 418)
 
-[node name="the sun" type="AnimatedSprite2D" parent="."]
+[node name="the sun" type="AnimatedSprite2D" parent="." unique_id=992051219]
 position = Vector2(1046, 88)
 scale = Vector2(0.9, 0.9)
 sprite_frames = SubResource("SpriteFrames_hxavl")
 autoplay = "default"
 frame_progress = 0.930617
 
-[node name="SkillStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "skill_icon", "skill_name_label", "skill_description_label", "perk_menu", "perk_wuzhongshengyou")]
+[node name="SkillStateMachine" type="Node2D" parent="." unique_id=150717369 node_paths=PackedStringArray("initial_state", "skill_icon", "skill_name_label", "skill_description_label", "perk_menu", "perk_wuzhongshengyou")]
 process_mode = 3
+position = Vector2(190, 206)
 script = ExtResource("7_q2oic")
 initial_state = NodePath("silvery")
 skill_icon = NodePath("../UI/技能图标")
@@ -117,72 +136,84 @@ skill_description_label = NodePath("../UI(use it)/商店/商店页面/skill_desc
 perk_menu = NodePath("../UI(use it)/商店/商店页面/perk_menu")
 perk_wuzhongshengyou = NodePath("../UI(use it)/商店/商店页面/perk_menu/Control6/wuzhongshengyou")
 
-[node name="silvery" parent="SkillStateMachine" instance=ExtResource("7_avggv")]
-position = Vector2(190, 221)
+[node name="silvery" parent="SkillStateMachine" unique_id=1211835127 instance=ExtResource("7_avggv")]
 icon = ExtResource("9_cleq4")
 
-[node name="fire" type="Node2D" parent="SkillStateMachine"]
-position = Vector2(190, 206)
+[node name="fire" type="Node2D" parent="SkillStateMachine" unique_id=1345410292]
 script = ExtResource("9_tyv27")
 bomb_bullet_scene = ExtResource("9_3kgru")
 bullet_scene = ExtResource("10_676lm")
 icon = ExtResource("12_rtpkd")
 
-[node name="water" type="Node2D" parent="SkillStateMachine" node_paths=PackedStringArray("water_3")]
-position = Vector2(190, 206)
+[node name="water" type="Node2D" parent="SkillStateMachine" unique_id=134345912]
 script = ExtResource("11_pruok")
-water_3 = NodePath("../../UI(use it)/商店/商店页面/perk_menu/Control2/water_3")
 bullet_scene = ExtResource("12_5tth2")
 icon = ExtResource("15_biqav")
 
-[node name="noskill" type="Node2D" parent="SkillStateMachine" node_paths=PackedStringArray("xuan_zhong")]
-position = Vector2(190, 206)
+[node name="noskill" type="Node2D" parent="SkillStateMachine" unique_id=111800270 node_paths=PackedStringArray("xuan_zhong")]
 script = ExtResource("11_x8g4k")
 xuan_zhong = [NodePath("../../UI/元素/火/选中"), NodePath("../../UI/元素/水/选中"), NodePath("../../UI/元素/木/选中"), NodePath("../../UI/元素/金/选中"), NodePath("../../UI/元素/土/选中"), NodePath("../../UI/元素/日/选中"), NodePath("../../UI/元素/月/选中")]
 icon = ExtResource("17_rtpkd")
 
-[node name="wood" type="Node2D" parent="SkillStateMachine"]
+[node name="wood" type="Node2D" parent="SkillStateMachine" unique_id=1033773136]
 script = ExtResource("18_lysc8")
 bullet_scene = ExtResource("19_vg48i")
 icon = ExtResource("20_42uo1")
 
-[node name="gold" type="Node2D" parent="SkillStateMachine"]
-position = Vector2(190, 206)
+[node name="gold" type="Node2D" parent="SkillStateMachine" unique_id=514323238]
 script = ExtResource("21_ep0fl")
 bullet_scene = ExtResource("22_v4x5e")
 icon = ExtResource("23_bsts1")
 
-[node name="Patchouli" type="AnimatedSprite2D" parent="."]
+[node name="earth" type="Node2D" parent="SkillStateMachine" unique_id=76055271]
+script = ExtResource("23_1fng4")
+bullet_scene = ExtResource("24_dkqdp")
+icon = ExtResource("25_nb12r")
+
+[node name="CanvasGroup" type="CanvasGroup" parent="SkillStateMachine/earth" unique_id=1557170737]
+material = SubResource("ShaderMaterial_nb12r")
+
+[node name="moon" type="Node2D" parent="SkillStateMachine" unique_id=1281789143]
+script = ExtResource("28_wrair")
+bullet_scene = ExtResource("29_wm6ru")
+icon = ExtResource("30_6jed6")
+
+[node name="sun" type="Node2D" parent="SkillStateMachine" unique_id=1960425293]
+script = ExtResource("29_lbh7x")
+bullet_scene = ExtResource("32_eq2ik")
+icon = ExtResource("32_6jed6")
+
+[node name="Patchouli" type="AnimatedSprite2D" parent="." unique_id=14655893]
 position = Vector2(148, 220)
 sprite_frames = SubResource("SpriteFrames_d28pq")
 
-[node name="spawn" type="Node" parent="."]
+[node name="spawn" type="Node" parent="." unique_id=275660174]
 script = ExtResource("9_me5h2")
 raid_point = 100.0
 maoyu_scene = ExtResource("6_ry0x4")
 
-[node name="Path" type="Path2D" parent="spawn"]
+[node name="Path" type="Path2D" parent="spawn" unique_id=2047429895]
 curve = SubResource("Curve2D_pmowg")
 
-[node name="SpawnLocation" type="PathFollow2D" parent="spawn/Path"]
+[node name="SpawnLocation" type="PathFollow2D" parent="spawn/Path" unique_id=1251230099]
 position = Vector2(1144, 352)
 rotation = 1.5707964
 
-[node name="UI" type="Sprite2D" parent="."]
+[node name="UI" type="Sprite2D" parent="." unique_id=921157105]
 process_mode = 3
 z_index = 101
 position = Vector2(576, 732)
 scale = Vector2(1, 1.16667)
 texture = ExtResource("10_306eu")
 
-[node name="元素" type="Node2D" parent="UI"]
+[node name="元素" type="Node2D" parent="UI" unique_id=1698283029]
 
-[node name="火" type="Sprite2D" parent="UI/元素"]
+[node name="火" type="Sprite2D" parent="UI/元素" unique_id=1615130617]
 position = Vector2(-524.526, 26.9779)
 scale = Vector2(0.572031, 0.490313)
 texture = ExtResource("11_hupia")
 
-[node name="火充能" type="ColorRect" parent="UI/元素/火"]
+[node name="火充能" type="ColorRect" parent="UI/元素/火" unique_id=279990360]
 offset_left = -76.0
 offset_top = -75.9998
 offset_right = 76.0
@@ -190,7 +221,7 @@ offset_bottom = 76.0002
 color = Color(0, 0, 0, 0.756863)
 metadata/_edit_use_anchors_ = true
 
-[node name="选中" type="ReferenceRect" parent="UI/元素/火"]
+[node name="选中" type="ReferenceRect" parent="UI/元素/火" unique_id=455717601]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -205,12 +236,12 @@ border_color = Color(0.0588235, 0.827451, 0.27451, 1)
 border_width = 5.0
 editor_only = false
 
-[node name="水" type="Sprite2D" parent="UI/元素"]
+[node name="水" type="Sprite2D" parent="UI/元素" unique_id=1718171459]
 position = Vector2(-428.526, 26.9781)
 scale = Vector2(0.572031, 0.490313)
 texture = ExtResource("12_qymhq")
 
-[node name="水充能" type="ColorRect" parent="UI/元素/水"]
+[node name="水充能" type="ColorRect" parent="UI/元素/水" unique_id=876487460]
 offset_left = -76.0
 offset_top = -76.0
 offset_right = 76.0
@@ -218,7 +249,7 @@ offset_bottom = 76.0
 color = Color(0, 0, 0, 0.756863)
 metadata/_edit_use_anchors_ = true
 
-[node name="选中" type="ReferenceRect" parent="UI/元素/水"]
+[node name="选中" type="ReferenceRect" parent="UI/元素/水" unique_id=535375938]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -233,12 +264,12 @@ border_color = Color(0.0588235, 0.827451, 0.27451, 1)
 border_width = 5.0
 editor_only = false
 
-[node name="木" type="Sprite2D" parent="UI/元素"]
+[node name="木" type="Sprite2D" parent="UI/元素" unique_id=2044635687]
 position = Vector2(-332.526, 26.9781)
 scale = Vector2(0.572031, 0.490313)
 texture = ExtResource("13_8hsjf")
 
-[node name="木充能" type="ColorRect" parent="UI/元素/木"]
+[node name="木充能" type="ColorRect" parent="UI/元素/木" unique_id=587269320]
 offset_left = -76.0
 offset_top = -76.0
 offset_right = 76.0
@@ -246,7 +277,7 @@ offset_bottom = 76.0
 color = Color(0, 0, 0, 0.756863)
 metadata/_edit_use_anchors_ = true
 
-[node name="选中" type="ReferenceRect" parent="UI/元素/木"]
+[node name="选中" type="ReferenceRect" parent="UI/元素/木" unique_id=1129398243]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -261,12 +292,12 @@ border_color = Color(0.0588235, 0.827451, 0.27451, 1)
 border_width = 5.0
 editor_only = false
 
-[node name="金" type="Sprite2D" parent="UI/元素"]
+[node name="金" type="Sprite2D" parent="UI/元素" unique_id=439229231]
 position = Vector2(-236.526, 26.9781)
 scale = Vector2(0.572031, 0.490313)
 texture = ExtResource("14_th6um")
 
-[node name="金充能" type="ColorRect" parent="UI/元素/金"]
+[node name="金充能" type="ColorRect" parent="UI/元素/金" unique_id=1326185685]
 offset_left = -76.0
 offset_top = -76.0
 offset_right = 76.0
@@ -274,7 +305,7 @@ offset_bottom = 76.0
 color = Color(0, 0, 0, 0.756863)
 metadata/_edit_use_anchors_ = true
 
-[node name="选中" type="ReferenceRect" parent="UI/元素/金"]
+[node name="选中" type="ReferenceRect" parent="UI/元素/金" unique_id=1187701754]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -289,12 +320,12 @@ border_color = Color(0.0588235, 0.827451, 0.27451, 1)
 border_width = 5.0
 editor_only = false
 
-[node name="土" type="Sprite2D" parent="UI/元素"]
+[node name="土" type="Sprite2D" parent="UI/元素" unique_id=434463710]
 position = Vector2(-140.526, 26.9781)
 scale = Vector2(0.572031, 0.490313)
 texture = ExtResource("15_oaoya")
 
-[node name="土充能" type="ColorRect" parent="UI/元素/土"]
+[node name="土充能" type="ColorRect" parent="UI/元素/土" unique_id=700715114]
 offset_left = -76.0
 offset_top = -76.0
 offset_right = 76.0
@@ -302,7 +333,7 @@ offset_bottom = 76.0
 color = Color(0, 0, 0, 0.756863)
 metadata/_edit_use_anchors_ = true
 
-[node name="选中" type="ReferenceRect" parent="UI/元素/土"]
+[node name="选中" type="ReferenceRect" parent="UI/元素/土" unique_id=1778456796]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -317,12 +348,12 @@ border_color = Color(0.0588235, 0.827451, 0.27451, 1)
 border_width = 5.0
 editor_only = false
 
-[node name="日" type="Sprite2D" parent="UI/元素"]
+[node name="日" type="Sprite2D" parent="UI/元素" unique_id=1251931779]
 position = Vector2(-44.5256, 26.9781)
 scale = Vector2(0.572031, 0.490313)
 texture = ExtResource("16_q10qn")
 
-[node name="日充能" type="ColorRect" parent="UI/元素/日"]
+[node name="日充能" type="ColorRect" parent="UI/元素/日" unique_id=314430851]
 offset_left = -76.0
 offset_top = -76.0
 offset_right = 76.0
@@ -330,7 +361,7 @@ offset_bottom = 76.0
 color = Color(0, 0, 0, 0.756863)
 metadata/_edit_use_anchors_ = true
 
-[node name="选中" type="ReferenceRect" parent="UI/元素/日"]
+[node name="选中" type="ReferenceRect" parent="UI/元素/日" unique_id=856701581]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -345,12 +376,12 @@ border_color = Color(0.0588235, 0.827451, 0.27451, 1)
 border_width = 5.0
 editor_only = false
 
-[node name="月" type="Sprite2D" parent="UI/元素"]
+[node name="月" type="Sprite2D" parent="UI/元素" unique_id=49395601]
 position = Vector2(51.4744, 26.9781)
 scale = Vector2(0.572031, 0.490313)
 texture = ExtResource("17_dpv2b")
 
-[node name="月充能" type="ColorRect" parent="UI/元素/月"]
+[node name="月充能" type="ColorRect" parent="UI/元素/月" unique_id=248624398]
 offset_left = -76.0
 offset_top = -76.0
 offset_right = 76.0
@@ -358,7 +389,7 @@ offset_bottom = 76.0
 color = Color(0, 0, 0, 0.756863)
 metadata/_edit_use_anchors_ = true
 
-[node name="选中" type="ReferenceRect" parent="UI/元素/月"]
+[node name="选中" type="ReferenceRect" parent="UI/元素/月" unique_id=726855546]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -373,12 +404,12 @@ border_color = Color(0.0588235, 0.827451, 0.27451, 1)
 border_width = 5.0
 editor_only = false
 
-[node name="Money" type="Sprite2D" parent="UI"]
+[node name="Money" type="Sprite2D" parent="UI" unique_id=43582560]
 position = Vector2(136, 10.2857)
 scale = Vector2(0.294296, 0.294296)
 texture = ExtResource("22_52l20")
 
-[node name="MoneyLabel" type="Label" parent="UI/Money"]
+[node name="MoneyLabel" type="Label" parent="UI/Money" unique_id=632007593]
 offset_left = 81.5505
 offset_top = -46.6001
 offset_right = 121.551
@@ -386,7 +417,7 @@ offset_bottom = -23.6001
 scale = Vector2(4.9177, 3.74236)
 text = "0"
 
-[node name="Skill" type="PanelContainer" parent="UI"]
+[node name="Skill" type="PanelContainer" parent="UI" unique_id=36460986]
 z_index = 1000
 offset_left = -568.0
 offset_top = -99.0
@@ -394,13 +425,13 @@ offset_right = -481.0
 offset_bottom = -16.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_pruok")
 
-[node name="技能图标" type="Sprite2D" parent="UI"]
+[node name="技能图标" type="Sprite2D" parent="UI" unique_id=1007103645]
 z_index = 1000
 position = Vector2(-525, -56.5713)
 scale = Vector2(0.5625, 0.482141)
 texture = ExtResource("9_cleq4")
 
-[node name="元素吸收" type="HBoxContainer" parent="UI" node_paths=PackedStringArray("resources")]
+[node name="元素吸收" type="HBoxContainer" parent="UI" unique_id=53888147 node_paths=PackedStringArray("resources")]
 offset_left = -481.0
 offset_top = -99.42829
 offset_right = 568.0
@@ -408,42 +439,42 @@ offset_bottom = -71.99976
 script = ExtResource("33_s1qg3")
 resources = [NodePath("火"), NodePath("水"), NodePath("木"), NodePath("金"), NodePath("土")]
 
-[node name="火" type="ColorRect" parent="UI/元素吸收" groups=["元素条"]]
+[node name="火" type="ColorRect" parent="UI/元素吸收" unique_id=1572277457 groups=["元素条"]]
 z_index = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 100.0
 color = Color(0.9, 0.07679996, 0.017999982, 1)
 
-[node name="水" type="ColorRect" parent="UI/元素吸收" groups=["元素条"]]
+[node name="水" type="ColorRect" parent="UI/元素吸收" unique_id=1864128447 groups=["元素条"]]
 z_index = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 100.0
 color = Color(0, 0.7154999, 0.81, 1)
 
-[node name="木" type="ColorRect" parent="UI/元素吸收" groups=["元素条"]]
+[node name="木" type="ColorRect" parent="UI/元素吸收" unique_id=1482215062 groups=["元素条"]]
 z_index = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 100.0
 color = Color(0.049166616, 0.59, 0, 1)
 
-[node name="金" type="ColorRect" parent="UI/元素吸收" groups=["元素条"]]
+[node name="金" type="ColorRect" parent="UI/元素吸收" unique_id=1732240401 groups=["元素条"]]
 z_index = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 100.0
 color = Color(0.88, 0.8512534, 0.017599983, 1)
 
-[node name="土" type="ColorRect" parent="UI/元素吸收" groups=["元素条"]]
+[node name="土" type="ColorRect" parent="UI/元素吸收" unique_id=386928848 groups=["元素条"]]
 z_index = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 100.0
 color = Color(0.5963671, 0.33412817, 0.0038650918, 1)
 
-[node name="UI(use it)" type="Control" parent="." node_paths=PackedStringArray("chong_neng", "xuan_zhong", "skill_state_machine", "money_label")]
+[node name="UI(use it)" type="Control" parent="." unique_id=201182386 node_paths=PackedStringArray("chong_neng", "xuan_zhong", "skill_state_machine", "money_label")]
 process_mode = 3
 z_index = 101
 layout_mode = 3
@@ -456,7 +487,7 @@ xuan_zhong = [NodePath("../UI/元素/火/选中"), NodePath("../UI/元素/水/�
 skill_state_machine = NodePath("../SkillStateMachine")
 money_label = NodePath("../UI/Money/MoneyLabel")
 
-[node name="商店" type="Control" parent="UI(use it)" node_paths=PackedStringArray("shop_panel")]
+[node name="商店" type="Control" parent="UI(use it)" unique_id=1721504561 node_paths=PackedStringArray("shop_panel")]
 z_index = 5
 anchors_preset = 0
 offset_left = 576.0
@@ -466,7 +497,7 @@ offset_bottom = 772.0
 script = ExtResource("35_bsts1")
 shop_panel = NodePath("商店页面")
 
-[node name="商店按钮" type="Button" parent="UI(use it)/商店"]
+[node name="商店按钮" type="Button" parent="UI(use it)/商店" unique_id=1543060604]
 layout_mode = 0
 offset_left = 106.0
 offset_top = 34.0
@@ -475,8 +506,7 @@ offset_bottom = 74.0
 theme_override_font_sizes/font_size = 23
 text = "商店"
 
-[node name="商店页面" type="Panel" parent="UI(use it)/商店"]
-visible = false
+[node name="商店页面" type="Panel" parent="UI(use it)/商店" unique_id=2111423714]
 layout_mode = 0
 offset_left = -576.0
 offset_top = -732.0
@@ -484,7 +514,7 @@ offset_right = 576.0
 offset_bottom = -79.0
 theme = ExtResource("35_v4x5e")
 
-[node name="skill_name" type="Label" parent="UI(use it)/商店/商店页面"]
+[node name="skill_name" type="Label" parent="UI(use it)/商店/商店页面" unique_id=689243367]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 576.0
@@ -494,7 +524,7 @@ text = "魔法飞弹"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="skill_description" type="Label" parent="UI(use it)/商店/商店页面"]
+[node name="skill_description" type="Label" parent="UI(use it)/商店/商店页面" unique_id=556141753]
 layout_mode = 0
 offset_left = 99.0
 offset_top = 656.0
@@ -503,7 +533,7 @@ offset_bottom = 732.0
 text = "魔法飞弹"
 autowrap_mode = 2
 
-[node name="perk_name" type="Label" parent="UI(use it)/商店/商店页面"]
+[node name="perk_name" type="Label" parent="UI(use it)/商店/商店页面" unique_id=1924728926]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -516,7 +546,7 @@ grow_horizontal = 2
 pivot_offset = Vector2(46, 12)
 horizontal_alignment = 1
 
-[node name="perk_description" type="Label" parent="UI(use it)/商店/商店页面"]
+[node name="perk_description" type="Label" parent="UI(use it)/商店/商店页面" unique_id=735787220]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -532,14 +562,14 @@ grow_vertical = 2
 text = "在等待某件事情的发生吗？"
 autowrap_mode = 1
 
-[node name="状态栏" type="Panel" parent="UI(use it)/商店/商店页面"]
+[node name="状态栏" type="Panel" parent="UI(use it)/商店/商店页面" unique_id=219691097]
 layout_mode = 0
 offset_left = 682.0
 offset_top = 40.0
 offset_right = 1123.0
 offset_bottom = 618.0
 
-[node name="容量_bar" type="ProgressBar" parent="UI(use it)/商店/商店页面/状态栏"]
+[node name="容量_bar" type="ProgressBar" parent="UI(use it)/商店/商店页面/状态栏" unique_id=1666089504]
 layout_mode = 0
 offset_left = 70.0
 offset_top = 78.0
@@ -549,7 +579,7 @@ max_value = 10.0
 value = 5.0
 show_percentage = false
 
-[node name="状态" type="Label" parent="UI(use it)/商店/商店页面/状态栏"]
+[node name="状态" type="Label" parent="UI(use it)/商店/商店页面/状态栏" unique_id=1766295353]
 layout_mode = 0
 offset_left = 144.0
 offset_top = 15.0
@@ -559,7 +589,7 @@ theme_override_font_sizes/font_size = 20
 text = "状态"
 horizontal_alignment = 1
 
-[node name="容量" type="Label" parent="UI(use it)/商店/商店页面/状态栏"]
+[node name="容量" type="Label" parent="UI(use it)/商店/商店页面/状态栏" unique_id=1242553881]
 layout_mode = 0
 offset_left = 22.0
 offset_top = 78.0
@@ -567,7 +597,7 @@ offset_right = 70.0
 offset_bottom = 101.0
 text = "容量："
 
-[node name="容量显示" type="Label" parent="UI(use it)/商店/商店页面/状态栏"]
+[node name="容量显示" type="Label" parent="UI(use it)/商店/商店页面/状态栏" unique_id=86651856]
 layout_mode = 0
 offset_left = 388.0
 offset_top = 78.0
@@ -575,7 +605,7 @@ offset_right = 428.0
 offset_bottom = 101.0
 text = "0/10"
 
-[node name="已启用的能力" type="Label" parent="UI(use it)/商店/商店页面/状态栏"]
+[node name="已启用的能力" type="Label" parent="UI(use it)/商店/商店页面/状态栏" unique_id=62454556]
 layout_mode = 0
 offset_left = 22.0
 offset_top = 145.0
@@ -583,7 +613,7 @@ offset_right = 134.0
 offset_bottom = 168.0
 text = "已启用的能力"
 
-[node name="avtive_perk" type="GridContainer" parent="UI(use it)/商店/商店页面/状态栏"]
+[node name="avtive_perk" type="GridContainer" parent="UI(use it)/商店/商店页面/状态栏" unique_id=2138424462]
 layout_mode = 0
 offset_left = 22.0
 offset_top = 181.0
@@ -591,7 +621,7 @@ offset_right = 428.0
 offset_bottom = 561.0
 columns = 6
 
-[node name="perk_menu" type="Panel" parent="UI(use it)/商店/商店页面" node_paths=PackedStringArray("perk_name", "perk_description")]
+[node name="perk_menu" type="Panel" parent="UI(use it)/商店/商店页面" unique_id=1612964376 node_paths=PackedStringArray("perk_name", "perk_description")]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -603,14 +633,14 @@ script = ExtResource("37_ttxeb")
 perk_name = NodePath("../perk_name")
 perk_description = NodePath("../perk_description")
 
-[node name="Control" parent="UI(use it)/商店/商店页面/perk_menu" instance=ExtResource("41_6au48")]
+[node name="Control" parent="UI(use it)/商店/商店页面/perk_menu" unique_id=1343254431 instance=ExtResource("41_6au48")]
 layout_mode = 0
 offset_left = 36.0
 offset_top = 29.0
 offset_right = 100.0
 offset_bottom = 93.0
 
-[node name="double_use" parent="UI(use it)/商店/商店页面/perk_menu/Control" node_paths=PackedStringArray("active_perk_panel") instance=ExtResource("38_gp7ks")]
+[node name="double_use" parent="UI(use it)/商店/商店页面/perk_menu/Control" unique_id=372332285 node_paths=PackedStringArray("active_perk_panel") instance=ExtResource("38_gp7ks")]
 z_index = 1
 layout_mode = 0
 scale = Vector2(1, 1)
@@ -619,14 +649,14 @@ perk_name = "双重施法"
 number = 1
 active_perk_panel = NodePath("../../../状态栏/avtive_perk")
 
-[node name="Control2" parent="UI(use it)/商店/商店页面/perk_menu" instance=ExtResource("41_6au48")]
+[node name="Control2" parent="UI(use it)/商店/商店页面/perk_menu" unique_id=840364660 instance=ExtResource("41_6au48")]
 layout_mode = 0
 offset_left = 138.0
 offset_top = 29.0
 offset_right = 202.0
 offset_bottom = 93.0
 
-[node name="water_3" parent="UI(use it)/商店/商店页面/perk_menu/Control2" node_paths=PackedStringArray("active_perk_panel") instance=ExtResource("38_gp7ks")]
+[node name="water_3" parent="UI(use it)/商店/商店页面/perk_menu/Control2" unique_id=527573004 node_paths=PackedStringArray("active_perk_panel") instance=ExtResource("38_gp7ks")]
 z_index = 1
 layout_mode = 0
 scale = Vector2(1, 1)
@@ -638,14 +668,14 @@ perk_description = "出水量变为三倍。
 number = 1
 active_perk_panel = NodePath("../../../状态栏/avtive_perk")
 
-[node name="Control3" parent="UI(use it)/商店/商店页面/perk_menu" instance=ExtResource("41_6au48")]
+[node name="Control3" parent="UI(use it)/商店/商店页面/perk_menu" unique_id=1309642613 instance=ExtResource("41_6au48")]
 layout_mode = 0
 offset_left = 236.0
 offset_top = 29.0
 offset_right = 300.0
 offset_bottom = 93.0
 
-[node name="fire_xiajibashe" parent="UI(use it)/商店/商店页面/perk_menu/Control3" node_paths=PackedStringArray("active_perk_panel") instance=ExtResource("38_gp7ks")]
+[node name="fire_xiajibashe" parent="UI(use it)/商店/商店页面/perk_menu/Control3" unique_id=686236326 node_paths=PackedStringArray("active_perk_panel") instance=ExtResource("38_gp7ks")]
 z_index = 1
 layout_mode = 0
 scale = Vector2(1, 1)
@@ -659,14 +689,14 @@ perk_description = "火焰变得异常迅猛。
 number = 1
 active_perk_panel = NodePath("../../../状态栏/avtive_perk")
 
-[node name="Control4" parent="UI(use it)/商店/商店页面/perk_menu" instance=ExtResource("41_6au48")]
+[node name="Control4" parent="UI(use it)/商店/商店页面/perk_menu" unique_id=648533270 instance=ExtResource("41_6au48")]
 layout_mode = 0
 offset_left = 335.0
 offset_top = 29.0
 offset_right = 399.0
 offset_bottom = 93.0
 
-[node name="fire_only" parent="UI(use it)/商店/商店页面/perk_menu/Control4" node_paths=PackedStringArray("active_perk_panel") instance=ExtResource("38_gp7ks")]
+[node name="fire_only" parent="UI(use it)/商店/商店页面/perk_menu/Control4" unique_id=1141764863 node_paths=PackedStringArray("active_perk_panel") instance=ExtResource("38_gp7ks")]
 z_index = 1
 layout_mode = 0
 scale = Vector2(1, 1)
@@ -679,14 +709,14 @@ perk_description = "火元素收集区极大扩展。
 number = 1
 active_perk_panel = NodePath("../../../状态栏/avtive_perk")
 
-[node name="Control5" parent="UI(use it)/商店/商店页面/perk_menu" instance=ExtResource("41_6au48")]
+[node name="Control5" parent="UI(use it)/商店/商店页面/perk_menu" unique_id=675466673 instance=ExtResource("41_6au48")]
 layout_mode = 0
 offset_left = 36.0
 offset_top = 116.0
 offset_right = 100.0
 offset_bottom = 180.0
 
-[node name="fire_bomb" parent="UI(use it)/商店/商店页面/perk_menu/Control5" node_paths=PackedStringArray("active_perk_panel") instance=ExtResource("38_gp7ks")]
+[node name="fire_bomb" parent="UI(use it)/商店/商店页面/perk_menu/Control5" unique_id=1009127562 node_paths=PackedStringArray("active_perk_panel") instance=ExtResource("38_gp7ks")]
 z_index = 1
 layout_mode = 0
 scale = Vector2(1, 1)
@@ -698,14 +728,14 @@ perk_description = "火元素攻击变为发射炸弹。受到撞击后释放火
 number = 1
 active_perk_panel = NodePath("../../../状态栏/avtive_perk")
 
-[node name="Control6" parent="UI(use it)/商店/商店页面/perk_menu" instance=ExtResource("41_6au48")]
+[node name="Control6" parent="UI(use it)/商店/商店页面/perk_menu" unique_id=1641151711 instance=ExtResource("41_6au48")]
 layout_mode = 0
 offset_left = 138.0
 offset_top = 116.0
 offset_right = 202.0
 offset_bottom = 180.0
 
-[node name="wuzhongshengyou" parent="UI(use it)/商店/商店页面/perk_menu/Control6" node_paths=PackedStringArray("active_perk_panel") instance=ExtResource("38_gp7ks")]
+[node name="wuzhongshengyou" parent="UI(use it)/商店/商店页面/perk_menu/Control6" unique_id=276438519 node_paths=PackedStringArray("active_perk_panel") instance=ExtResource("38_gp7ks")]
 z_index = 1
 layout_mode = 0
 scale = Vector2(1, 1)
@@ -718,14 +748,14 @@ perk_description = "每次生成弹幕时，获得少量随机元素。
 （用太多会被巫女找上）"
 active_perk_panel = NodePath("../../../状态栏/avtive_perk")
 
-[node name="Control7" parent="UI(use it)/商店/商店页面/perk_menu" instance=ExtResource("41_6au48")]
+[node name="Control7" parent="UI(use it)/商店/商店页面/perk_menu" unique_id=91854475 instance=ExtResource("41_6au48")]
 layout_mode = 0
 offset_left = 236.0
 offset_top = 116.0
 offset_right = 300.0
 offset_bottom = 180.0
 
-[node name="double_use" parent="UI(use it)/商店/商店页面/perk_menu/Control7" node_paths=PackedStringArray("active_perk_panel") instance=ExtResource("38_gp7ks")]
+[node name="esc" parent="UI(use it)/商店/商店页面/perk_menu/Control7" unique_id=679430511 node_paths=PackedStringArray("active_perk_panel") instance=ExtResource("38_gp7ks")]
 z_index = 1
 layout_mode = 0
 scale = Vector2(1, 1)
@@ -735,6 +765,45 @@ perk_name = "咲夜特制静止时计"
 perk_description = "咲夜小姐的得意之作，
 按下 ESC 即可暂停时间，
 但什么是ESC？"
+number = 1
+active_perk_panel = NodePath("../../../状态栏/avtive_perk")
+
+[node name="Control8" parent="UI(use it)/商店/商店页面/perk_menu" unique_id=1535722591 instance=ExtResource("41_6au48")]
+layout_mode = 0
+offset_left = 335.0
+offset_top = 116.0
+offset_right = 399.0
+offset_bottom = 180.0
+
+[node name="chuizhiluoxia" parent="UI(use it)/商店/商店页面/perk_menu/Control8" unique_id=1188438142 node_paths=PackedStringArray("active_perk_panel") instance=ExtResource("38_gp7ks")]
+z_index = 1
+layout_mode = 0
+scale = Vector2(1, 1)
+texture = ExtResource("39_nkrvh")
+script = ExtResource("55_pgij3")
+perk_id = 7
+perk_name = "神秘的场外援助"
+perk_description = "有高人相助，发射的弹幕将从天而降。
+与某些元素有特殊效果
+（bug？特性！）"
+number = 1
+active_perk_panel = NodePath("../../../状态栏/avtive_perk")
+
+[node name="Control22" parent="UI(use it)/商店/商店页面/perk_menu" unique_id=261253701 instance=ExtResource("41_6au48")]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 458.0
+offset_right = 100.0
+offset_bottom = 522.0
+
+[node name="22" parent="UI(use it)/商店/商店页面/perk_menu/Control22" unique_id=1370732481 node_paths=PackedStringArray("active_perk_panel") instance=ExtResource("38_gp7ks")]
+z_index = 1
+layout_mode = 0
+scale = Vector2(1, 1)
+texture = ExtResource("49_xrq8m")
+perk_id = 8
+perk_name = "黑暗剑+22"
+perk_description = "下次不玩烂梗了"
 number = 1
 active_perk_panel = NodePath("../../../状态栏/avtive_perk")
 

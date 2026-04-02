@@ -1,21 +1,9 @@
-extends Area2D
-@export var damage_mutiple =1.0
-@export var speed = 200.0
-var attack_damage : float
-var direction : Vector2
-var velocity : Vector2
+extends Bullet
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	velocity=direction.normalized()*speed
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	velocity=direction.normalized()*speed
-	
-func _physics_process(delta: float) -> void:
-	position+=velocity*delta
+	super()
+	move_component.can_move=true
+	move_component.move_state=MoveComponent.move_states.uniform
 
 func _on_area_entered(area: Area2D) -> void:
 	if area is HitboxComponent and area.can_be_damaged:

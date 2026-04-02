@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EnemyParam" format=3 uid="uid://bdevjpxxsgtiq"]
+
+[ext_resource type="Script" uid="uid://chqr1xsgtcjnp" path="res://param/enemy/enemy.gd" id="1_losia"]
+
+[resource]
+script = ExtResource("1_losia")
+drop_resource = 100
+drop_money = 100
+speed = 50.0
+metadata/_custom_type_script = "uid://chqr1xsgtcjnp"

@@ -1,0 +1,20 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://qyeu7ul36vdr"]
+
+[ext_resource type="Shader" uid="uid://17n40ecyx1e" path="res://source/shader/enemy.gdshader" id="1_l47la"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_l47la"]
+noise_type = 2
+frequency = 0.005
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5nwhj"]
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_l47la")
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource("1_l47la")
+shader_parameter/is_red = false
+shader_parameter/red_color = Color(1, 0, 0, 1)
+shader_parameter/noise_textrue = SubResource("NoiseTexture2D_5nwhj")
+shader_parameter/earth_progress = 0.0
+shader_parameter/earth_color = Color(0.6, 0.4, 0.102, 1)

@@ -1,21 +1,22 @@
 extends Area2D
-@export var damage_mutiple =0.1
-@export var speed = 400.0
 var attack_damage : float
-var direction : Vector2
+@export var damage_mutiple : float
+@export var speed = 400.0
+var direction : Vector2 :
+	set(value):
+		direction=value.normalized()
 var velocity : Vector2
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	velocity=direction.normalized()*speed
-
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	velocity=direction.normalized()*speed
+	pass
 	
 func _physics_process(delta: float) -> void:
-	position+=velocity*delta
+	position+=speed*direction*delta
 
 func _on_area_entered(area: Area2D) -> void:
 	if area is HitboxComponent and area.can_be_damaged:

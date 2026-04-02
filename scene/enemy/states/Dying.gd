@@ -11,7 +11,7 @@ func Enter():
 	x_velocity=50.0
 	y_velocity=-200
 
-func Exix():
+func Exit():
 	pass
 	
 func Update(_delta:float):

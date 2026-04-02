@@ -4,11 +4,15 @@ var max_health : float =1000.0
 var health : float=1000.0
 var activation : Array[int] = [0,0,0,0,0,0,0]
 var if_erchongshifa : bool = false
-var resources : Array[float] = [1000,0,0,0,0,0,0]
+var resources : Array[float] = [1000,1000,1000,1000,1000,1000,1000]
 var max_resources : Array[float] = [1000.0,1000.0,1000.0,1000.0,1000.0,1000.0,1000.0]
 var resources_area : Array[float] = [100,100,100,100,100]
 
-enum perk_id{double_use,water_3,fire_xiajibashe,fire_only,fire_bomb,wuzhongshengyou,esc}
+enum perk_id{
+	double_use,water_3,fire_xiajibashe,
+	fire_only,fire_bomb,wuzhongshengyou,
+	esc,chuizhiluoxia,none
+}
 var active_perk = {
 	perk_id.double_use:0,
 	perk_id.water_3:0,
@@ -16,7 +20,9 @@ var active_perk = {
 	perk_id.fire_only:0,
 	perk_id.fire_bomb:0,
 	perk_id.wuzhongshengyou:0,
-	perk_id.esc:0
+	perk_id.esc:0,
+	perk_id.chuizhiluoxia:0,
+	perk_id.none:0
 }
 
 var resources_area_sum : float = 500

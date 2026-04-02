@@ -1,32 +1,37 @@
-[gd_scene load_steps=6 format=3 uid="uid://bmmo5opux4aop"]
+[gd_scene format=3 uid="uid://bmmo5opux4aop"]
 
 [ext_resource type="Script" uid="uid://gqpj3wogw83q" path="res://scene/bullet/FireBombBullet/fire_bomb_bullet.gd" id="1_oy7x3"]
 [ext_resource type="PackedScene" uid="uid://b5wt1swvxewrn" path="res://scene/bullet/FireBullet/FireBullet.tscn" id="2_dqhhp"]
 [ext_resource type="Texture2D" uid="uid://duon520lmiv1h" path="res://source/sprite/红魔馆.png" id="2_o100a"]
 [ext_resource type="PackedScene" uid="uid://cpps8eyd2ggnf" path="res://scene/bullet/FireBombBullet/FireBombPiece.tscn" id="3_dqhhp"]
+[ext_resource type="Script" uid="uid://3agu6grv682m" path="res://scene/component/MoveComponent/MoveComponent.gd" id="5_ae738"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dqhhp"]
 radius = 26.305893
 
-[node name="FireBombBullet" type="Area2D"]
+[node name="FireBombBullet" type="Area2D" unique_id=373565233 node_paths=PackedStringArray("move_component")]
 process_mode = 1
 z_index = 5
 script = ExtResource("1_oy7x3")
 bullet_scene = ExtResource("2_dqhhp")
 piece_scene = ExtResource("3_dqhhp")
 piece_position = Array[Vector2]([Vector2(-16, -16), Vector2(16, -16), Vector2(-16, 16), Vector2(16, 16)])
+move_component = NodePath("MoveComponent")
 damage_mutiple = 1.0
-speed = 100.0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1342415797]
 rotation = 1.5707964
 scale = Vector2(0.9121094, 0.9121094)
 texture = ExtResource("2_o100a")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1479525651]
 shape = SubResource("CircleShape2D_dqhhp")
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=715818896]
+
+[node name="MoveComponent" type="Node" parent="." unique_id=2030781187]
+script = ExtResource("5_ae738")
+metadata/_custom_type_script = "uid://3agu6grv682m"
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
