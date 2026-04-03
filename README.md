@@ -85,6 +85,7 @@ My-First-Game/
 │   ├── sprite/       # 游戏美术资源
 │   ├── shader/       # 视觉特效着色器
 │   └── theme/        # UI 主题
+├── script/           # 开发工具脚本（setup.ps1）
 ├── addons/           # Pixel Pen 像素画插件
 └── project.godot     # Godot 项目配置
 ```
@@ -105,6 +106,33 @@ My-First-Game/
 
 ## 开发
 
-直接用 Godot 编辑器打开项目即可进行开发，无需额外构建步骤。
+### 准备开发环境
+
+执行以下命令自动安装所有开发依赖（需已安装 Python 3.8+）：
+
+```powershell
+.\script\setup.ps1
+```
+
+此脚本会自动完成：
+- 安装 `gdtoolkit`（GDScript 格式检查与代码规范）
+- 安装 `pre-commit`
+- 注册 git hook（之后每次 `commit` 自动触发检查）
+
+> **注意**：首次运行 PowerShell 脚本可能需要先执行：
+> ```powershell
+> Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
+> ```
+
+### 日常开发
+
+直接用 Godot 编辑器打开项目即可，无需额外构建步骤。
 
 修改代码后按 **F5** 即可热重载运行，快速验证改动。
+
+### 代码质量
+
+```powershell
+# 手动对全部文件运行一次检查
+pre-commit run --all-files
+```
