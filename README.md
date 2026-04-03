@@ -85,6 +85,7 @@ My-First-Game/
 │   ├── sprite/       # 游戏美术资源
 │   ├── shader/       # 视觉特效着色器
 │   └── theme/        # UI 主题
+├── script/           # 开发工具脚本（setup.ps1）
 ├── addons/           # Pixel Pen 像素画插件
 └── project.godot     # Godot 项目配置
 ```
@@ -105,6 +106,70 @@ My-First-Game/
 
 ## 开发
 
-直接用 Godot 编辑器打开项目即可进行开发，无需额外构建步骤。
+### 准备开发环境
 
-修改代码后按 **F5** 即可热重载运行，快速验证改动。
+执行以下命令自动安装所有开发依赖（需已安装 Python 3.8+）：
+
+```powershell
+.\script\setup.ps1
+```
+
+此脚本会自动完成：
+- 安装 `gdtoolkit`（GDScript 格式检查与代码规范）
+- 安装 `pre-commit`
+- 注册 git hook（之后每次 `commit` 自动触发检查）
+
+> **注意**：首次运行 PowerShell 脚本可能需要先执行：
+> ```powershell
+> Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
+> ```
+
+### 开发规范
+
+**每次开发必须遵循以下流程，禁止直接提交到 `master` 分支。**
+
+#### 第一步：创建新分支
+
+在项目根目录执行：
+
+```powershell
+.\script\new-branch.ps1
+```
+
+首次运行会要求输入姓名拼音首字母缩写（如张三丰 → `zsf`），之后自动复用。
+生成的分支名格式为 `{缩写}{日期}-dev`，例如 `zsf43-dev`。
+
+可选参数：
+
+```powershell
+.\script\new-branch.ps1 feature   # 创建 zsf43-feature 分支
+.\script\new-branch.ps1 -Local    # 不切换 master，在当前分支上创建
+.\script\new-branch.ps1 -Help     # 查看帮助
+```
+
+#### 第二步：提交代码
+
+```powershell
+git add <修改的文件>
+git commit -m "描述本次改动"
+```
+
+> **注意**：提交时会自动触发 pre-commit 检查（GDScript 格式、代码规范、换行符等）。
+> **禁止使用 `--no-verify` 跳过检查**，检查不通过必须修复后重新提交。
+
+#### 第三步：推送并提交 PR
+
+```powershell
+git push origin <分支名>
+```
+
+推送后前往 GitHub 仓库提交 Pull Request，目标分支选择 `master`，等待 review 后合并。
+
+---
+
+### 代码质量
+
+```powershell
+# 手动对全部文件运行一次检查
+pre-commit run --all-files
+```
