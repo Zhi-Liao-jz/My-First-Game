@@ -28,7 +28,7 @@ var active_perk = {
 var resources_area_sum : float = 500
 var area_left : float = 95
 var area_right : float =1152
-var money : int
+var money : int = 1000000
 signal resource_change
 signal activation_change
 signal money_change

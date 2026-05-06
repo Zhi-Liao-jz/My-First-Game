@@ -7,7 +7,7 @@ var health :float
 func _ready() -> void:
 	health=max_health
 
-func damage(attack:Attack):
+func damage(attack:AttackParam):
 	health-=attack.attack_damage
 	if health<=0:
 		enemy.get_node("StateMachine").on_child_transition(null,"Dying")

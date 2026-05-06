@@ -5,7 +5,7 @@ class_name HitboxComponent
 @export var animation_player : AnimationPlayer
 var can_be_damaged = true
 
-func damage(attack:Attack):
+func damage(attack:AttackParam):
 	if can_be_damaged == false:
 		return
 	if enemy.param.weight>0 :

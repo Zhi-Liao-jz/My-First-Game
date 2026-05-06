@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b5wt1swvxewrn"]
 
 [ext_resource type="Script" uid="uid://8tck4kt0wao3" path="res://scene/bullet/FireBullet/fire_bullet.gd" id="1_vblb8"]
+[ext_resource type="Resource" uid="uid://d3xkh5y0n5gbv" path="res://param/attack/fire.tres" id="2_842b5"]
 [ext_resource type="Texture2D" uid="uid://d0fgn6ii380gw" path="res://scene/bullet/FireBullet/火焰.png" id="2_vblb8"]
 [ext_resource type="Script" uid="uid://3agu6grv682m" path="res://scene/component/MoveComponent/MoveComponent.gd" id="3_0qwxa"]
 
@@ -8,13 +9,13 @@
 radius = 22.0
 height = 44.0
 
-[node name="FireBullet" type="Area2D" unique_id=1700098511 node_paths=PackedStringArray("hit_box", "move_component")]
+[node name="FireBullet" type="Area2D" unique_id=1700098511 node_paths=PackedStringArray("hit_box")]
 process_mode = 1
 script = ExtResource("1_vblb8")
 hit_box = NodePath("CollisionShape2D")
-move_component = NodePath("MoveComponent")
-damage_mutiple = 1.0
 init_speed = 200.0
+move_state = 1
+attack_param = ExtResource("2_842b5")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=213861011]
 scale = Vector2(0.21875, 0.21875)

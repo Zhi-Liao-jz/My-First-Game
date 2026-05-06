@@ -17,11 +17,10 @@ func input(event: InputEvent):
 		if event.pressed:
 			if Manage.active_perk[Manage.perk_id.fire_bomb] and Manage.resources[0]>=20*use and get_global_mouse_position().y<650:
 				var bullet=bomb_bullet_scene.instantiate()
+				get_tree().current_scene.add_child(bullet)
 				bullet.global_position=global_position
 				bullet.target_position=event.position
 				bullet.be_fired()
-				bullet.attack_damage=bullet.damage_mutiple*1.0
-				get_tree().current_scene.add_child(bullet)
 				Manage.add_resource(0,-20*use)
 			else:
 				open=true
@@ -35,15 +34,14 @@ func Update(delta : float):
 		while process>cold and Manage.resources[0]>=use:
 			process-=cold
 			var bullet=bullet_scene.instantiate()
+			get_tree().current_scene.add_child(bullet)
 			bullet.global_position=global_position
 			bullet.direction=(get_global_mouse_position()-global_position).rotated(randf()*PI/3-PI/6)
-			bullet.attack_damage=bullet.damage_mutiple*1.0
 			if Manage.active_perk[Manage.perk_id.fire_xiajibashe] :
 				bullet.speed*=2
 				bullet.fire_strength_decrease_time *= 0.8
 				bullet.fire_strength*=2
 				bullet.direction=(get_global_mouse_position()-global_position).rotated(randf()*PI-PI/2)
-				bullet.damage_mutiple*=2
+				bullet.attack.attack_damage*=2
 			
-			get_tree().current_scene.add_child(bullet)
 			Manage.add_resource(0,-use)

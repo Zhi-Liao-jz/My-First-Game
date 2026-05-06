@@ -15,12 +15,10 @@ func input(event: InputEvent):
 		if process==0:
 			for i in range(amount):
 				var bullet=bullet_scene.instantiate()
-				bullet.position=Vector2(10,0)*randf()+Vector2(0,10)*randf()
-				var direction=(event.position-global_position).rotated(randf()*PI/4-PI/8).normalized()
-				var init_speed=400+randf()*200
-				bullet.velocity=init_speed*direction
-				bullet.attack_damage=bullet.damage_mutiple*1.0
 				$CanvasGroup.add_child(bullet)
+				bullet.position=Vector2(10,0)*randf()+Vector2(0,10)*randf()
+				bullet.direction=(event.position-global_position).rotated(randf()*PI/4-PI/8).normalized()
+				bullet.speed=400+randf()*200
 				process=cold
 
 func Update(delta : float):

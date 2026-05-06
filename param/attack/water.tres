@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AttackParam" format=3 uid="uid://dl8pkl85g0753"]
+
+[ext_resource type="Script" uid="uid://sxuw7g3l004w" path="res://param/attack/attack.gd" id="1_mtl82"]
+
+[resource]
+script = ExtResource("1_mtl82")
+attack_damage = 0.1
+force = 1.0
+yuansu = Array[float]([0.0, 10.0, 0.0, 0.0, 0.0, 0.0, 0.0])
+metadata/_custom_type_script = "uid://sxuw7g3l004w"

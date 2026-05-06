@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_losia")
-drop_resource = 100
+drop_resource = 100.0
 drop_money = 100
 speed = 50.0
 metadata/_custom_type_script = "uid://chqr1xsgtcjnp"

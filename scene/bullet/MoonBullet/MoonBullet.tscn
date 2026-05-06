@@ -2,8 +2,15 @@
 
 [ext_resource type="Texture2D" uid="uid://bmjnu233tjrb2" path="res://source/sprite/法阵.png" id="1_pfal4"]
 [ext_resource type="Script" uid="uid://dqj4ddcpb5ro5" path="res://scene/bullet/MoonBullet/moon_bullet.gd" id="1_q2k4x"]
+[ext_resource type="Script" uid="uid://sxuw7g3l004w" path="res://param/attack/attack.gd" id="2_ofkeg"]
 [ext_resource type="Script" uid="uid://3agu6grv682m" path="res://scene/component/MoveComponent/MoveComponent.gd" id="3_47hux"]
 [ext_resource type="Texture2D" uid="uid://dwd21g3fpgnpg" path="res://source/sprite/光柱.png" id="4_2ths6"]
+
+[sub_resource type="Resource" id="Resource_4gmwt"]
+script = ExtResource("2_ofkeg")
+attack_damage = 0.2
+yuansu = Array[float]([0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 100.0])
+metadata/_custom_type_script = "uid://sxuw7g3l004w"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_af1ts"]
 size = Vector2(229, 736)
@@ -21,7 +28,7 @@ panding = NodePath("CollisionShape2D")
 guangzhu = [NodePath("光柱"), NodePath("光柱2"), NodePath("光柱3"), NodePath("光柱4"), NodePath("光柱5"), NodePath("光柱6")]
 shanghaijiange = 0.2
 move_component = NodePath("MoveComponent")
-damage_mutiple = 0.5
+attack_param = SubResource("Resource_4gmwt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1099252507]
 position = Vector2(3.5, -8)

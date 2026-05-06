@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cqqtkgo5mixd4"]
 
 [ext_resource type="Script" uid="uid://d21437ywd2qnw" path="res://scene/bullet/EarthBullet/earth_bullet.gd" id="1_rdjsk"]
+[ext_resource type="Resource" uid="uid://b3vx5sfu7iqav" path="res://param/attack/earth.tres" id="2_amgwv"]
 [ext_resource type="Script" uid="uid://3agu6grv682m" path="res://scene/component/MoveComponent/MoveComponent.gd" id="2_f5cy4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rdjsk"]
@@ -9,11 +10,10 @@
 _data = [Vector2(0.053763434, 0.24719107), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[node name="EarthBullet" type="Area2D" unique_id=2127767595 node_paths=PackedStringArray("trail", "move_component")]
+[node name="EarthBullet" type="Area2D" unique_id=2127767595 node_paths=PackedStringArray("trail")]
 script = ExtResource("1_rdjsk")
 trail = NodePath("Line2D")
-move_component = NodePath("MoveComponent")
-damage_mutiple = 1.0
+attack_param = ExtResource("2_amgwv")
 metadata/_custom_type_script = "uid://dl8u87p56ahoe"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1810973428]

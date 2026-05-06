@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://wh3f2otaufxa"]
+[gd_scene format=3 uid="uid://wh3f2otaufxa"]
 
 [ext_resource type="Material" uid="uid://cj6q6qia5ps5b" path="res://source/shader/FlashMaterial.tres" id="1_0slgj"]
 [ext_resource type="Script" uid="uid://b6ogo38e3erxc" path="res://scene/enemy/yaojing maid/yaojing.gd" id="1_mqbno"]
@@ -50,41 +50,37 @@ _data = {
 radius = 24.0
 height = 58.0
 
-[node name="yaojing" type="Node2D"]
+[node name="yaojing" type="Node2D" unique_id=1464516180]
 script = ExtResource("1_mqbno")
-drop_resource = 100
-drop_money = 100
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=319574739]
 material = ExtResource("1_0slgj")
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_skini")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
-libraries = {
-&"": SubResource("AnimationLibrary_gqtrd")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D" unique_id=1850604392]
+libraries/ = SubResource("AnimationLibrary_gqtrd")
 
-[node name="HealthComponent" type="Node" parent="."]
+[node name="HealthComponent" type="Node" parent="." unique_id=714743102]
 script = ExtResource("2_qo0j2")
 max_health = 10.0
 
-[node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("animation_player")]
+[node name="HitboxComponent" type="Area2D" parent="." unique_id=870166566 node_paths=PackedStringArray("animation_player")]
 collision_layer = 3
 script = ExtResource("2_k52sn")
 animation_player = NodePath("../Sprite2D/AnimationPlayer")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=1355722261]
 position = Vector2(-6, -3)
 shape = SubResource("CapsuleShape2D_q3vjr")
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" type="Node" parent="." unique_id=322139745 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_b21km")
 initial_state = NodePath("SmoothMove")
 
-[node name="SmoothMove" type="Node" parent="StateMachine"]
+[node name="SmoothMove" type="Node" parent="StateMachine" unique_id=1789352281]
 script = ExtResource("4_vx81n")
 speed = 20.0
 
-[node name="Dying" type="Node" parent="StateMachine"]
+[node name="Dying" type="Node" parent="StateMachine" unique_id=572149649]
 script = ExtResource("7_qs466")

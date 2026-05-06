@@ -31,12 +31,11 @@ func Update(delta : float):
 			else: multiple=1
 			
 			for i in range(1,multiple+1):
-				var bullet=bullet_scene.instantiate()
+				var bullet : Bullet =bullet_scene.instantiate()
 				bullet.global_position=global_position
 				bullet.direction=(get_viewport().get_mouse_position()-global_position).normalized()
 				var ver_direction=Vector2(bullet.direction[1],-bullet.direction[0])
 				bullet.rotation=bullet.direction.angle()
-				bullet.attack_damage=bullet.damage_mutiple*1.0
 				if i%2:
 					@warning_ignore("integer_division")
 					bullet.position+=ver_direction*10*(i/2)

@@ -38,10 +38,10 @@ func _physics_process(delta: float) -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	if area is HitboxComponent and area.can_be_damaged:
-		var attack = Attack.new()
+		var final_attack=attack
 		if chixushijian>5:
-			attack.attack_damage=attack_damage*2
+			final_attack.attack_damage=attack.attack_damage*2
 		else:
-			attack.attack_damage=attack_damage*(1+chixushijian/5)
-		area.damage(attack)
+			final_attack.attack_damage=attack.attack_damage*(1+chixushijian/5)
+		area.damage(final_attack)
 			

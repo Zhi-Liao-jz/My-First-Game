@@ -507,6 +507,7 @@ theme_override_font_sizes/font_size = 23
 text = "商店"
 
 [node name="商店页面" type="Panel" parent="UI(use it)/商店" unique_id=2111423714]
+visible = false
 layout_mode = 0
 offset_left = -576.0
 offset_top = -732.0

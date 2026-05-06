@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bjun6oujpl8gc" path="res://scene/bullet/SunBullet/sun_bullet.gd" id="1_1o7bk"]
 [ext_resource type="Texture2D" uid="uid://brftjwg1l7nh6" path="res://source/sprite/爆球.png" id="2_kc18e"]
+[ext_resource type="Resource" uid="uid://dij8hogqbx2bo" path="res://param/attack/sun.tres" id="2_r4xfg"]
 [ext_resource type="Texture2D" uid="uid://b12xwgpcqud00" path="res://source/sprite/爆炸圆环.png" id="3_yneks"]
 [ext_resource type="Texture2D" uid="uid://csy08m6ruewgl" path="res://source/sprite/更白的爆球.png" id="3_yydty"]
 [ext_resource type="Texture2D" uid="uid://cn176kao5ql6f" path="res://source/sprite/神秘纯白三角形.png" id="4_yneks"]
@@ -189,7 +190,7 @@ _data = {
 &"spin": SubResource("Animation_yydty")
 }
 
-[node name="SunBullet" type="Area2D" unique_id=1834037112 node_paths=PackedStringArray("panding", "donghua", "one", "move_component")]
+[node name="SunBullet" type="Area2D" unique_id=1834037112 node_paths=PackedStringArray("panding", "donghua", "one")]
 z_index = 6
 script = ExtResource("1_1o7bk")
 yinbaoshijian = 1.0
@@ -198,8 +199,7 @@ panding = NodePath("CollisionShape2D")
 donghua = NodePath("Node2D")
 one = NodePath("one")
 shanghaijiange = 0.2
-move_component = NodePath("MoveComponent")
-damage_mutiple = 0.2
+attack_param = ExtResource("2_r4xfg")
 metadata/_custom_type_script = "uid://dl8u87p56ahoe"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1618653344]

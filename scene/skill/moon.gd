@@ -15,7 +15,6 @@ func input(event: InputEvent):
 			open=true
 			bullet=bullet_scene.instantiate()
 			bullet.position=position
-			bullet.attack_damage=bullet.damage_mutiple*1.0
 			add_child(bullet)
 			bullet.global_position.y=320
 			if Manage.active_perk[Manage.perk_id.chuizhiluoxia]:

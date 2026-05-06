@@ -80,16 +80,16 @@ func bao_fa_si_san() -> void:
 
 func fire() -> void:
 	var bullet=bullet_scene.instantiate()
-	bullet.direction=Vector2.from_angle(PI*2*randf())
-	bullet.attack_damage=bullet.damage_mutiple*0.4
 	get_parent().add_child(bullet)
+	bullet.direction=Vector2.from_angle(PI*2*randf())
+	bullet.attack.attack_damage=bullet.attack_param.attack_damage*0.4
 	bullet.global_position=global_position
 
 func xiajiba_fire() -> void:
 	var bullet=bullet_scene.instantiate()
-	bullet.direction=Vector2.from_angle(rotation-PI/2)
-	bullet.attack_damage=bullet.damage_mutiple*0.3
 	get_parent().add_child(bullet)
+	bullet.direction=Vector2.from_angle(rotation-PI/2)
+	bullet.attack.attack_damage=bullet.attack_param.attack_damage*0.3
 	bullet.global_position=global_position
 
 func _on_area_entered(area: Area2D) -> void:

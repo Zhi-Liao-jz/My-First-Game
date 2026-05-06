@@ -12,6 +12,9 @@ func _ready():
 	Manage.resource_change.connect(update_resources)
 	Manage.activation_change.connect(update_xuan_zhong)
 	Manage.money_change.connect(update_money)
+	fake_money=Manage.money
+	for i in range(7):
+		update_resources(i)
 
 func update_xuan_zhong (key : int,vis:int) :
 		xuan_zhong[key].visible=vis

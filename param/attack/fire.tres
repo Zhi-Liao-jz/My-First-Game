@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="AttackParam" format=3 uid="uid://d3xkh5y0n5gbv"]
+
+[ext_resource type="Script" uid="uid://sxuw7g3l004w" path="res://param/attack/attack.gd" id="1_kudwe"]
+
+[resource]
+script = ExtResource("1_kudwe")
+attack_damage = 1.0
+yuansu = Array[float]([100.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
+perk_bonus = {
+2: true
+}
+metadata/_custom_type_script = "uid://sxuw7g3l004w"
